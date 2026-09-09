@@ -1,0 +1,47 @@
+name: GitHub 트렌드 브리핑
+
+on:
+  schedule:
+    # 화·금 00:17 UTC (09:17 KST). 정각은 Actions 스케줄러 혼잡 구간이라 분을 어긋나게 잡는다.
+    - cron: '17 0 * * 2,5'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write   # state/seen_repos.json, briefings/ 커밋용
+  issues: write     # 브리핑 Issue 발행용
+
+concurrency:
+  group: briefing
+  cancel-in-progress: false
+
+jobs:
+  briefing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install -r requirements.txt
+
+      - name: 브리핑 실행
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        # Slack 발송과 동시에 briefings/ 에 아카이브를 남긴다(검색용, 비용 없음).
+        run: python -m src.main --deliver slack,file
+
+      - name: 소개 이력·아카이브 커밋
+        run: |
+          git add -A state briefings
+          if git diff --cached --quiet; then
+            echo "변경 없음"
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: 브리핑 아카이브 갱신 ($(date -u +%Y-%m-%d))"
+          git push
