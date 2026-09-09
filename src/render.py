@@ -1,16 +1,19 @@
 """브리핑을 Markdown으로 렌더링한다.
 
 Slack Block Kit과 별개 경로. GitHub Issue·아카이브 파일·Actions 요약이
-모두 이 한 벌의 Markdown을 공유한다.
+모두 이 한 벌의 Markdown을 공유한다. 라벨은 src/i18n.py 를 따른다.
 """
 
 from __future__ import annotations
 
 from datetime import datetime
 
+from . import config, i18n
 from .models import Analysis, Briefing, Repo
 
-_WEEKDAYS = ["월", "화", "수", "목", "금", "토", "일"]
+
+def _s() -> dict:
+    return i18n.strings(config.LANGUAGE)
 
 
 def date_label(iso: str) -> str:
@@ -18,44 +21,59 @@ def date_label(iso: str) -> str:
         dt = datetime.fromisoformat(iso)
     except ValueError:
         return iso
-    return f"{dt:%Y-%m-%d} ({_WEEKDAYS[dt.weekday()]})"
+    return f"{dt:%Y-%m-%d} ({_s()['weekdays'][dt.weekday()]})"
 
 
 def title(briefing: Briefing) -> str:
-    return f"🔭 GitHub 트렌드 브리핑 · {date_label(briefing.generated_at)}"
+    return f"{_s()['title']} · {date_label(briefing.generated_at)}"
 
 
 def _repo_block(repo: Repo, analysis: Analysis) -> list[str]:
+    s = _s()
     head = f"### [{repo.full_name}]({repo.html_url}) · ⭐ {repo.stars:,}"
     if repo.language:
         head += f" · {repo.language}"
-    lines = [head, "", f"> {analysis.summary}", ""]
-    lines.append(f"**적용 분야** · {', '.join(analysis.domains)}")
-    lines.append("")
-    lines.append(f"**활용 시나리오** · {analysis.use_case}")
-    lines.append("")
-    lines.append(f"**확장 아이디어** · {analysis.extension_idea}")
-    lines.append("")
-    return lines
+    return [
+        head,
+        "",
+        f"> {analysis.summary}",
+        "",
+        f"**{s['field_domains']}** · {', '.join(analysis.domains)}",
+        "",
+        f"**{s['field_use_case']}** · {analysis.use_case}",
+        "",
+        f"**{s['field_extension']}** · {analysis.extension_idea}",
+        "",
+    ]
 
 
 def to_markdown(briefing: Briefing, *, heading: bool = True) -> str:
+    s = _s()
     lines: list[str] = []
     if heading:
         lines += [f"# {title(briefing)}", ""]
 
     if briefing.is_empty:
-        lines.append("이번 회차에는 기준을 통과한 신규 저장소가 없습니다.")
+        lines.append(s["empty"])
         return "\n".join(lines) + "\n"
 
     if briefing.fresh:
-        lines += [f"## 최근 7일 신규 · {len(briefing.fresh)}건", ""]
+        lines += [
+            "## " + s["fresh_heading"].format(
+                days=config.WINDOW_DAYS, count=len(briefing.fresh)
+            ),
+            "",
+        ]
         for repo, analysis in briefing.fresh:
             lines += _repo_block(repo, analysis)
 
     if briefing.breakout:
-        lines += ["## 🔥 뒤늦게 터진 것", "",
-                  "7일 윈도우를 지난 뒤 급상승한 대형 저장소", ""]
+        lines += [
+            "## " + s["breakout_heading"],
+            "",
+            s["breakout_note"].format(days=config.WINDOW_DAYS),
+            "",
+        ]
         for repo, analysis in briefing.breakout:
             lines += _repo_block(repo, analysis)
 

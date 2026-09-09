@@ -2,8 +2,9 @@ name: GitHub 트렌드 브리핑
 
 on:
   schedule:
-    # 화·금 00:17 UTC (09:17 KST). 정각은 Actions 스케줄러 혼잡 구간이라 분을 어긋나게 잡는다.
-    - cron: '17 0 * * 2,5'
+    # 매일 00:00 UTC = 09:00 KST
+    # Actions 스케줄러는 정각에 요청이 몰려 수 분~수십 분 지연될 수 있다(정상).
+    - cron: '0 0 * * *'
   workflow_dispatch: {}
 
 permissions:
@@ -28,9 +29,12 @@ jobs:
 
       - name: 브리핑 실행
         env:
-          GH_PAT: ${{ secrets.GH_PAT }}
+          # GH_PAT 은 선택. 없으면 Actions 가 자동 주입하는 GITHUB_TOKEN 을 쓴다.
+          GH_PAT: ${{ secrets.GH_PAT || secrets.GITHUB_TOKEN }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          # 브리핑 언어. 저장소 Variables 에 BRIEFING_LANG 을 두면 바뀐다 (기본: 한국어)
+          BRIEFING_LANG: ${{ vars.BRIEFING_LANG }}
         # Slack 발송과 동시에 briefings/ 에 아카이브를 남긴다(검색용, 비용 없음).
         run: python -m src.main --deliver slack,file
 

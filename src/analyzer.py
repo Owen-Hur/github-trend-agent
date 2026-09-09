@@ -9,7 +9,7 @@ from __future__ import annotations
 from . import config
 from .models import DOMAINS, Analysis, Repo
 
-SYSTEM = """당신은 개발팀에 GitHub 신규 저장소를 소개하는 기술 애널리스트다.
+SYSTEM_TEMPLATE = """당신은 개발팀에 GitHub 신규 저장소를 소개하는 기술 애널리스트다.
 주어진 저장소 각각에 대해 4개 필드를 채워라.
 
 - 핵심 요약: 비개발자도 이해할 수 있는 1문장 기능 정의. 저장소 이름을 그대로 되풀이하지 말 것.
@@ -18,7 +18,10 @@ SYSTEM = """당신은 개발팀에 GitHub 신규 저장소를 소개하는 기�
 - 확장 아이디어: 다른 도구와 결합했을 때의 고도화 방향 1~2문장.
 
 재료가 부실한 저장소는 추측을 지어내지 말고 확인 가능한 범위에서만 서술하라.
-모든 답변은 한국어로 작성한다."""
+summary / use_case / extension_idea 세 필드의 본문은 반드시 {language}(으)로 작성한다.
+domains 는 주어진 enum 값을 그대로 사용한다(번역하지 말 것)."""
+
+SYSTEM = SYSTEM_TEMPLATE.format(language=config.LANGUAGE)
 
 ANALYSIS_TOOL = {
     "name": "submit_analysis",

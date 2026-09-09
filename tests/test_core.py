@@ -7,7 +7,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src import config, deliver, render, slack  # noqa: E402
+from src import config, deliver, i18n, render, slack  # noqa: E402
 from src.dedup import SeenStore  # noqa: E402
 from src.github_client import clean_readme  # noqa: E402
 from src.main import pick  # noqa: E402
@@ -137,6 +137,30 @@ check("LLM 필요한데 키 없으면 중단",
 check("조건 충족 시 통과", not expect_exit(full, need_llm=True, targets=["slack", "file"]))
 check("dry-run(대상 없음)은 키 없이도 통과",
       not expect_exit(config.Config(None, None, None, None), need_llm=False, targets=[]))
+
+print("\n언어 설정")
+check("기본은 한국어", config.LANGUAGE == "한국어" and "적용 분야" in render.to_markdown(b))
+check("한국어 분야 태그", i18n.domains("한국어")[0] == "AI/ML" and "백엔드" in i18n.domains("한국어"))
+check("English 분야 태그", i18n.domains("English") == [
+    "AI/ML", "Backend", "Data Engineering", "DevOps", "Security", "Frontend", "Other"])
+check("미등록 언어는 English 라벨로 대체", i18n.strings("日本語") is i18n.strings("English"))
+check("라벨 키 집합이 언어 간 동일",
+      set(i18n.strings("한국어")) == set(i18n.strings("English")))
+
+_orig = config.LANGUAGE
+try:
+    config.LANGUAGE = "English"
+    md_en = render.to_markdown(b)
+    check("영어 라벨 적용", "**Domains**" in md_en and "**Use case**" in md_en)
+    check("영어 제목", "GitHub Trend Briefing" in md_en)
+    check("영어 요일", "(Fri)" in md_en, md_en.splitlines()[0])
+    check("영어 breakout 구획", "Late Bloomers" in md_en)
+    check("Slack 블록도 영어", "Domains" in str(slack.build_payload(b)))
+    check("빈 브리핑 영어 문구",
+          "No new repositories" in render.to_markdown(Briefing("2026-09-11T00:00:00+00:00")))
+finally:
+    config.LANGUAGE = _orig
+check("원상 복구", config.LANGUAGE == "한국어" and "적용 분야" in render.to_markdown(b))
 
 print("\nAnalysis.fallback")
 f = Analysis.fallback(repo("o/r", 100, "원본 설명", ["AI/ML", "DevOps", "보안"]), "LLM 미사용")

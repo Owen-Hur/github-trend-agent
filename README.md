@@ -1,6 +1,6 @@
 # GitHub 트렌드 브리핑 에이전트
 
-매주 **화·금**, 최근 급상승한 GitHub 신규 저장소를 수집해 Claude로 분석하고 Slack으로 보낸다.
+**매일 오전 9시(KST)**, 최근 급상승한 GitHub 신규 저장소를 수집해 Claude로 분석하고 Slack으로 보낸다.
 
 주기·윈도우·임계치는 감이 아니라 **실제 GitHub Search API 측정값**에 근거해 정했다. 근거는 아래 [설계 근거](#설계-근거)에 정리돼 있고, 전체 설계 문서는 [github_trend_agent_design.md](github_trend_agent_design.md)에 있다.
 
@@ -9,7 +9,7 @@
 ## 동작 방식
 
 ```
-GitHub Actions cron (화·금 00:17 UTC)
+GitHub Actions cron (매일 00:00 UTC = 09:00 KST)
         │
         ├─ 트랙 A  created:>7일전 stars:>50      → 후보 30건
         ├─ 트랙 B  created:>30일전 stars:>5000   → 뒤늦게 터진 대형 건
@@ -64,12 +64,11 @@ python3 -m src.main
 
 ### 4. 자동화
 
-저장소 시크릿 3개를 등록하면 화·금 자동 발송이 시작된다.
+저장소 시크릿 3개를 등록하면 매일 자동 발송이 시작된다.
 
 ```bash
 gh secret set SLACK_WEBHOOK_URL
 gh secret set ANTHROPIC_API_KEY
-gh secret set GH_PAT
 ```
 
 바로 확인하려면 수동 실행:
@@ -119,6 +118,7 @@ python3 -m src.main --dry-run --no-llm
 | `ANTHROPIC_API_KEY` | `--no-llm`이 아닐 때 필수 |
 | `GH_PAT` | 브리핑에서는 선택(rate limit 여유). `issue` 전달과 명예의 전당 모드에서는 필수 |
 | `GITHUB_REPOSITORY` | `issue` 전달에만 필요. Actions 안에서는 자동 주입 |
+| `BRIEFING_LANG` | 선택. 브리핑 언어 (`한국어` 기본 / `English`). 미등록 언어를 넣으면 라벨은 영어, 본문은 해당 언어 |
 
 `.env.example`을 참고할 것. `.env`는 `.gitignore`에 있다.
 
@@ -224,6 +224,7 @@ GH_PAT=ghp_... python3 -m src.main --mode hall-of-fame -o HALL_OF_FAME.md
 | `BREAKOUT_WINDOW_DAYS` | 30 | 트랙 B 윈도우 |
 | `BREAKOUT_MIN_STARS` | 5000 | 트랙 B 별 임계치 |
 | `SEEN_RETENTION_DAYS` | 30 | 소개 이력 보관 기간 |
+| `LANGUAGE` | 한국어 | 브리핑 언어 (`BRIEFING_LANG` 환경변수로 덮어씀) |
 
 3일 간격에 신규가 15건 유입되는데 5건만 소비하므로 헤드룸이 있다. `PICK_COUNT`는 7까지 품질 저하 없이 올릴 수 있다. 다만 **5로 시작해 실제로 다 읽히는지 보고 조정**하길 권한다 — 늘리는 건 쉽고 줄이는 건 어렵다.
 

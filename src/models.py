@@ -2,16 +2,10 @@
 
 from dataclasses import dataclass, field
 
+from . import config, i18n
+
 # Phase 4 고정 태그 목록. LLM tool schema의 enum과 동일해야 한다.
-DOMAINS = [
-    "AI/ML",
-    "백엔드",
-    "데이터 엔지니어링",
-    "DevOps",
-    "보안",
-    "프론트엔드",
-    "기타",
-]
+DOMAINS = i18n.domains(config.LANGUAGE)
 
 # description이 이 길이 미만이면 README 보강 대상.
 MIN_DESCRIPTION_LEN = 80
@@ -77,12 +71,14 @@ class Analysis:
     extension_idea: str = ""
 
     @classmethod
-    def fallback(cls, repo: Repo, reason: str = "분석 미수행") -> "Analysis":
+    def fallback(cls, repo: Repo, reason: str | None = None) -> "Analysis":
         """LLM 실패·미사용 시 원본 description으로 대체. 전체 실행은 계속된다."""
+        s = i18n.strings(config.LANGUAGE)
+        reason = reason or s["reason_no_llm"]
         return cls(
             full_name=repo.full_name,
-            summary=repo.description or "(설명 없음 — 저장소를 직접 확인하세요)",
-            domains=repo.topics[:2] or ["기타"],
+            summary=repo.description or s["fallback_no_desc"],
+            domains=repo.topics[:2] or [DOMAINS[-1]],
             use_case=f"({reason})",
             extension_idea=f"({reason})",
         )
