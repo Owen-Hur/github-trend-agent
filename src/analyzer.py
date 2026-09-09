@@ -79,8 +79,8 @@ def analyze(repos: list[Repo], api_key: str) -> dict[str, Analysis]:
         client = anthropic.Anthropic(api_key=api_key)
         resp = client.messages.create(
             model=config.MODEL,
-            max_tokens=4096,
-            temperature=config.TEMPERATURE,
+            max_tokens=config.MAX_TOKENS,
+            output_config={"effort": config.EFFORT},
             system=SYSTEM,
             tools=[ANALYSIS_TOOL],
             tool_choice={"type": "tool", "name": "submit_analysis"},

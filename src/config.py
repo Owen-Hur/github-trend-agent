@@ -32,8 +32,11 @@ SEEN_RETENTION_DAYS = 30
 
 README_EXCERPT_CHARS = 1000
 
-MODEL = "claude-sonnet-5"
-TEMPERATURE = 0.6
+MODEL = "claude-opus-5"
+# temperature 는 현행 Messages API 에서 제거됐다(전송 시 400).
+# 깊이 조절은 output_config.effort 로 한다: low | medium | high | xhigh | max
+EFFORT = "medium"
+MAX_TOKENS = 16000
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 STATE_PATH = PROJECT_ROOT / "state" / "seen_repos.json"
