@@ -14,6 +14,16 @@
     "stars": 1971,
     "track": "fresh"
   },
+  "ahujasid/camera-to-blender": {
+    "first_seen": "2026-09-09T07:37:00.120547+00:00",
+    "stars": 779,
+    "track": "fresh"
+  },
+  "anthropics/fermats-last-theorem": {
+    "first_seen": "2026-09-09T07:37:00.120547+00:00",
+    "stars": 986,
+    "track": "fresh"
+  },
   "anywhere-labs/dsh-desktop": {
     "first_seen": "2026-09-09T07:29:01.991650+00:00",
     "stars": 24649,
@@ -22,6 +32,16 @@
   "ashemag/human-atlas": {
     "first_seen": "2026-09-09T07:29:01.991650+00:00",
     "stars": 2582,
+    "track": "fresh"
+  },
+  "awesome-dsh-plugin/awesome-dsh-plugin": {
+    "first_seen": "2026-09-09T07:37:00.120547+00:00",
+    "stars": 14975,
+    "track": "breakout"
+  },
+  "danielblnc/DLSS-NR-on-AMD": {
+    "first_seen": "2026-09-09T07:37:00.120547+00:00",
+    "stars": 945,
     "track": "fresh"
   },
   "deepseek-ai/deepseek-harness": {
@@ -34,9 +54,29 @@
     "stars": 21447,
     "track": "breakout"
   },
+  "kajisho5/ffmpeg-skill": {
+    "first_seen": "2026-09-09T07:37:00.120547+00:00",
+    "stars": 794,
+    "track": "fresh"
+  },
   "openai/NavierStokesAndEuler": {
     "first_seen": "2026-09-09T07:29:01.991650+00:00",
     "stars": 1175,
     "track": "fresh"
+  },
+  "vinzdg/codenotch": {
+    "first_seen": "2026-09-09T07:37:00.120547+00:00",
+    "stars": 1157,
+    "track": "fresh"
+  },
+  "yjh051108/dsh-routing-suite": {
+    "first_seen": "2026-09-09T07:37:00.120547+00:00",
+    "stars": 7138,
+    "track": "breakout"
+  },
+  "zhu1090093659/dsh-web": {
+    "first_seen": "2026-09-09T07:37:00.120547+00:00",
+    "stars": 7198,
+    "track": "breakout"
   }
 }
