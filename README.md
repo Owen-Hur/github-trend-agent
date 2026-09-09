@@ -105,6 +105,9 @@ Slack이 막혀도 코드 수정 없이 대상만 바꾸면 된다 — `--delive
 
 ```bash
 GH_PAT=$(gh auth token) python3 -m src.main --mode hall-of-fame -o HALL_OF_FAME.md
+
+# Slack 으로 보내기 — 연도당 한 블록의 목록으로 압축된다
+python3 -m src.main --mode hall-of-fame --since 2022 --deliver slack
 ```
 
 Claude Code 스킬로도 등록돼 있어 "연도별 top10 보여줘"라고 하면 실행된다.
@@ -131,7 +134,7 @@ gh run list --workflow="briefing.yml" --limit 5
 python3 -m tests.test_core
 ```
 
-네트워크 없이 도는 73건. 배지 제거, 품질 하한선, 상태 파일 파기·손상 복구, Block Kit 제한과 메시지 분할, mrkdwn 이스케이프, 전달 대상 결정, 시크릿·웹훅 검증, 언어 전환, 요일 게이팅을 덮는다.
+네트워크 없이 도는 75건. 배지 제거, 품질 하한선, 상태 파일 파기·손상 복구, Block Kit 제한과 메시지 분할, mrkdwn 이스케이프, 전달 대상 결정, 시크릿·웹훅 검증, 언어 전환, 요일 게이팅을 덮는다.
 
 ## 구조
 

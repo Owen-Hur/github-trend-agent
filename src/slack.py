@@ -193,23 +193,73 @@ def build_payload(briefing: Briefing) -> dict:
     return build_payloads(briefing)[0]
 
 
-def send(webhook_url: str, briefing: Briefing) -> None:
-    """Slack 은 실패해도 200 을 주는 경우가 있어 응답 본문까지 확인한다.
+def build_hall_of_fame_payloads(hof) -> list[dict]:
+    """명예의 전당은 연도당 한 블록으로 압축한다.
 
-    성공은 정확히 "ok". 그 외(channel_not_found, action_prohibited 등)는
-    메시지가 조용히 버려진 것이므로 실패로 처리한다.
+    저장소마다 블록을 만들면 5년치만 해도 50블록을 훌쩍 넘고,
+    순위표는 한눈에 보는 게 목적이라 나열이 오히려 읽기 좋다.
+    Slack 은 Markdown 표를 렌더링하지 못하므로 목록 형태로 만든다.
     """
-    payloads = build_payloads(briefing)
+    title = f"🏆 GitHub 명예의 전당 · 연도별 누적 ⭐ TOP {hof.top}"
+    blocks: list[dict] = [
+        {"type": "header", "text": {"type": "plain_text", "text": title}},
+        {
+            "type": "context",
+            "elements": [
+                {
+                    "type": "mrkdwn",
+                    "text": "해당 연도에 *생성된* 저장소의 *현재* 누적 별 순위",
+                }
+            ],
+        },
+    ]
+    for entry in hof.years:
+        lines = [f"*{entry.year}년*  ·  ⭐1k+ 총 {entry.total:,}건", ""]
+        for i, r in enumerate(entry.repos, 1):
+            lines.append(
+                f"`{i:>2}.` ⭐ {r.stars:>7,}  <{r.html_url}|{_escape(r.full_name)}>"
+            )
+        blocks.append(
+            {
+                "type": "section",
+                "text": {
+                    "type": "mrkdwn",
+                    "text": truncate("\n".join(lines), MAX_SECTION_CHARS),
+                },
+            }
+        )
+        blocks.append({"type": "divider"})
+    if blocks and blocks[-1].get("type") == "divider":
+        blocks.pop()
+
+    pages = chunk_blocks(blocks)
+    return [{"text": title, "blocks": page} for page in pages]
+
+
+def send_payloads(webhook_url: str, payloads: list[dict], label: str = "메시지") -> None:
     for i, payload in enumerate(payloads):
         if i:
             time.sleep(1.2)  # 웹훅 URL당 초당 1회 제한
         body = post_json(webhook_url, payload).strip()
         if body != "ok":
             raise RuntimeError(
-                f"Slack 이 메시지를 거부했습니다 ({i + 1}/{len(payloads)}): {body!r}\n"
+                f"Slack 이 {label}를 거부했습니다 ({i + 1}/{len(payloads)}): {body!r}\n"
                 "  channel_not_found → 웹훅이 가리키는 채널이 삭제·전환됐습니다.\n"
                 "  action_prohibited → 앱이 해당 채널에서 제거됐습니다.\n"
                 "  둘 다 Incoming Webhooks 에서 웹훅을 새로 발급해야 합니다."
             )
     if len(payloads) > 1:
         print(f"  (블록 한도로 {len(payloads)}개 메시지로 나눠 발송)")
+
+
+def send_hall_of_fame(webhook_url: str, hof) -> None:
+    send_payloads(webhook_url, build_hall_of_fame_payloads(hof), "명예의 전당")
+
+
+def send(webhook_url: str, briefing: Briefing) -> None:
+    """Slack 은 실패해도 200 을 주는 경우가 있어 응답 본문까지 확인한다.
+
+    성공은 정확히 "ok". 그 외(channel_not_found, action_prohibited 등)는
+    메시지가 조용히 버려진 것이므로 실패로 처리한다.
+    """
+    send_payloads(webhook_url, build_payloads(briefing), "브리핑")

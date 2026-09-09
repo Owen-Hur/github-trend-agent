@@ -22,7 +22,10 @@ python3 -m src.main --mode hall-of-fame
 |---|---|---|
 | `--since <연도>` | 2008 | 조회 시작 연도. 현재 연도부터 역순으로 내려간다 |
 | `--top <N>` | 10 | 연도별 출력 개수 |
-| `-o <경로>` | (없음) | Markdown 파일로 저장. 생략하면 화면에 출력 |
+| `-o <경로>` | (없음) | Markdown 파일로 저장 |
+| `--deliver slack` | (없음) | Slack 채널로 발송 |
+
+`-o` 와 `--deliver` 를 모두 생략하면 화면에 출력한다. 둘을 함께 줘도 된다.
 
 ### 예시
 
@@ -32,7 +35,13 @@ python3 -m src.main --mode hall-of-fame
 
 # 최근 5년만, 연도별 top20 을 파일로 저장
 python3 -m src.main --mode hall-of-fame --since 2021 --top 20 -o HALL_OF_FAME.md
+
+# Slack 채널로 발송 (연도당 한 블록으로 압축된 순위 목록)
+python3 -m src.main --mode hall-of-fame --since 2022 --deliver slack
 ```
+
+**Slack 발송은 되돌릴 수 없으므로 사용자가 명시적으로 요청했을 때만 한다.**
+요청받았다면 `--dry-run` 을 함께 붙여 페이로드를 먼저 보여주고 확인받는 편이 안전하다.
 
 ## 사용자 요청 해석
 
@@ -70,6 +79,7 @@ GH_PAT=$(gh auth token) python3 -m src.main --mode hall-of-fame
 
 ## 주의
 
-- 이 모드는 Slack 으로 발송하지 않는다. 정기 브리핑과 별개의 온디맨드 리포트다
+- 기본적으로는 Slack 으로 발송하지 않는다. 정기 브리핑과 별개의 온디맨드 리포트이므로, 채널로 보내려면 `--deliver slack` 을 명시해야 한다
+- Slack 은 Markdown 표를 렌더링하지 못하므로 발송 시에는 연도당 한 블록의 목록 형태로 바뀐다
 - 소개 이력(`state/seen_repos.json`)을 건드리지 않는다. 몇 번을 돌려도 정기 브리핑에 영향이 없다
 - `ANTHROPIC_API_KEY` 는 필요 없다. LLM 분석 없이 GitHub 데이터만 집계한다
