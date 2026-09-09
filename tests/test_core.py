@@ -107,7 +107,9 @@ check("heading=False 시 제목 생략", not render.to_markdown(b, heading=False
 check("빈 브리핑 문구", "신규 저장소가 없습니다" in render.to_markdown(Briefing("2026-09-11T00:00:00+00:00")))
 
 print("\n전달 대상 결정")
-full = config.Config("tok", "key", "https://hooks.slack.com/x", "o/r")
+# 실제 웹훅처럼 보이는 리터럴은 시크릿 스캐너에 걸리므로 조각으로 만든다.
+WEBHOOK_OK = "https://hooks.slack.com/services/" + "T" + "0" * 10 + "/B" + "0" * 10 + "/" + "x" * 24
+full = config.Config("tok", "key", WEBHOOK_OK, "o/r")
 check("auto — slack 우선", deliver.resolve("auto", full) == ["slack"])
 check("auto — slack 없으면 issue+file",
       deliver.resolve("auto", config.Config("tok", "key", None, "o/r")) == ["issue", "file"])
@@ -137,6 +139,12 @@ check("LLM 필요한데 키 없으면 중단",
 check("조건 충족 시 통과", not expect_exit(full, need_llm=True, targets=["slack", "file"]))
 check("dry-run(대상 없음)은 키 없이도 통과",
       not expect_exit(config.Config(None, None, None, None), need_llm=False, targets=[]))
+check("웹훅 URL 중복 붙여넣기 차단",
+      expect_exit(config.Config("t", "k", WEBHOOK_OK + WEBHOOK_OK, "o/r"),
+                  need_llm=False, targets=["slack"]))
+check("웹훅 URL 형식 오류 차단",
+      expect_exit(config.Config("t", "k", "https://hooks.slack.com/x", "o/r"),
+                  need_llm=False, targets=["slack"]))
 
 print("\n언어 설정")
 check("기본은 한국어", config.LANGUAGE == "한국어" and "적용 분야" in render.to_markdown(b))

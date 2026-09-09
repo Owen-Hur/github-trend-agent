@@ -7,6 +7,7 @@ Slack 키가 없어서 터지면 토큰과 시간을 그냥 버리게 된다.
 from __future__ import annotations
 
 import os
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -42,6 +43,10 @@ MODEL = "claude-opus-5"
 # 깊이 조절은 output_config.effort 로 한다: low | medium | high | xhigh | max
 EFFORT = "medium"
 MAX_TOKENS = 16000
+
+WEBHOOK_RE = re.compile(
+    r"^https://hooks\.slack\.com/services/T[A-Z0-9]+/B[A-Z0-9]+/[A-Za-z0-9]+$"
+)
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 STATE_PATH = PROJECT_ROOT / "state" / "seen_repos.json"
@@ -80,6 +85,13 @@ class Config:
         targets = targets or []
         if "slack" in targets and not self.slack_webhook:
             missing.append("SLACK_WEBHOOK_URL (--deliver 에서 slack 을 빼면 불필요)")
+        elif "slack" in targets and not WEBHOOK_RE.match(self.slack_webhook):
+            # 잘못된 URL 은 Slack 문서 페이지로 리다이렉트되어 HTTP 200 을 준다.
+            # 그대로 두면 "발송 완료" 로 보이면서 아무데도 도착하지 않는다.
+            missing.append(
+                f"SLACK_WEBHOOK_URL 형식 오류 ({len(self.slack_webhook)}자). "
+                "중복 붙여넣기가 흔한 원인입니다 — python3 scripts/set_webhook.py 로 재입력하세요"
+            )
         if "issue" in targets:
             if not self.github_token:
                 missing.append("GH_PAT (issue 전달에 필요)")
