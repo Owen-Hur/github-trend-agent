@@ -1,42 +1,42 @@
 {
   "Albert-Weasker/niubigeo": {
-    "first_seen": "2026-09-09T05:14:16.549435+00:00",
-    "stars": 2180,
+    "first_seen": "2026-09-09T07:29:01.991650+00:00",
+    "stars": 2183,
     "track": "fresh"
   },
   "EverettFish/holo-card-studio": {
-    "first_seen": "2026-09-09T05:14:16.549435+00:00",
-    "stars": 1154,
+    "first_seen": "2026-09-09T07:29:01.991650+00:00",
+    "stars": 1179,
     "track": "fresh"
   },
   "Rion-Wu-tech/wechat-intelligence-hub": {
-    "first_seen": "2026-09-09T05:14:16.549435+00:00",
-    "stars": 1952,
+    "first_seen": "2026-09-09T07:29:01.991650+00:00",
+    "stars": 1971,
     "track": "fresh"
   },
   "anywhere-labs/dsh-desktop": {
-    "first_seen": "2026-09-09T05:14:16.549435+00:00",
-    "stars": 24612,
+    "first_seen": "2026-09-09T07:29:01.991650+00:00",
+    "stars": 24649,
     "track": "breakout"
   },
   "ashemag/human-atlas": {
-    "first_seen": "2026-09-09T05:14:16.549435+00:00",
-    "stars": 2539,
+    "first_seen": "2026-09-09T07:29:01.991650+00:00",
+    "stars": 2582,
     "track": "fresh"
   },
   "deepseek-ai/deepseek-harness": {
-    "first_seen": "2026-09-09T05:14:16.549435+00:00",
-    "stars": 216547,
+    "first_seen": "2026-09-09T07:29:01.991650+00:00",
+    "stars": 216699,
     "track": "breakout"
   },
   "guillaumemeyer/watermarks-remover": {
-    "first_seen": "2026-09-09T05:14:16.549435+00:00",
-    "stars": 21433,
+    "first_seen": "2026-09-09T07:29:01.991650+00:00",
+    "stars": 21447,
     "track": "breakout"
   },
-  "vinzdg/codenotch": {
-    "first_seen": "2026-09-09T05:14:16.549435+00:00",
-    "stars": 1134,
+  "openai/NavierStokesAndEuler": {
+    "first_seen": "2026-09-09T07:29:01.991650+00:00",
+    "stars": 1175,
     "track": "fresh"
   }
 }
