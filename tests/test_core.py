@@ -162,20 +162,25 @@ check("웹훅 URL 형식 오류 차단",
                   need_llm=False, targets=["slack"]))
 
 print("\nCLI 인자 파싱 — 각 모드가 실제로 기동되는지")
-import src.main as _main  # noqa: E402
+import ast  # noqa: E402
 import inspect  # noqa: E402
+import textwrap  # noqa: E402
+
+import src.main as _main  # noqa: E402
 
 # validate() 시그니처 변경 때 hall-of-fame 호출부만 누락돼 TypeError 가 났던 회귀.
-# 각 모드의 검증 호출이 현재 시그니처와 맞는지 인자 이름으로 확인한다.
+# 줄바꿈된 호출도 잡히도록 AST 로 실제 키워드 인자를 읽는다.
 _params = set(inspect.signature(config.Config.validate).parameters)
-_src = inspect.getsource(_main.main)
-_kwargs = set()
-for _line in _src.splitlines():
-    if "cfg.validate(" in _line:
-        _kwargs |= {kw.split("=")[0].strip() for kw in _line.split("(", 1)[1].rstrip(")").split(",")}
+_tree = ast.parse(textwrap.dedent(inspect.getsource(_main.main)))
+_calls = [
+    n for n in ast.walk(_tree)
+    if isinstance(n, ast.Call)
+    and isinstance(n.func, ast.Attribute) and n.func.attr == "validate"
+]
+_kwargs = {kw.arg for c in _calls for kw in c.keywords}
 check("main() 의 validate 호출 인자가 시그니처와 일치",
       _kwargs <= _params, f"미지원 인자: {_kwargs - _params}")
-check("두 모드 모두 validate 를 호출", _src.count("cfg.validate(") == 2)
+check("두 모드 모두 validate 를 호출", len(_calls) == 2)
 
 print("\n분야별 트랙 실행 요일")
 from src.main import local_weekday, topics_enabled  # noqa: E402

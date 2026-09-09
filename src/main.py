@@ -145,15 +145,27 @@ def run_briefing(args: argparse.Namespace, cfg: config.Config, targets: list[str
     return 0
 
 
-def run_hall_of_fame(args: argparse.Namespace, cfg: config.Config) -> int:
+def run_hall_of_fame(args: argparse.Namespace, cfg: config.Config, targets: list[str]) -> int:
     client = GitHubClient(cfg.github_token)
     print(f"{args.since}년~현재 연도별 수집 시작...")
-    report = hall_of_fame.generate(client, since=args.since, top=args.top)
+    hof = hall_of_fame.collect(client, since=args.since, top=args.top)
+    report = hall_of_fame.to_markdown(hof)
+
     if args.out:
         with open(args.out, "w", encoding="utf-8") as f:
             f.write(report)
         print(f"\n리포트 저장: {args.out}")
-    else:
+
+    if "slack" in targets:
+        if args.dry_run:
+            print("\nDRY RUN — Slack 페이로드 (실제 발송 안 함)")
+            print(json.dumps(slack.build_hall_of_fame_payloads(hof), ensure_ascii=False, indent=2))
+        else:
+            slack.send_hall_of_fame(cfg.slack_webhook, hof)
+            print("Slack 발송 완료")
+
+    # 파일로도 Slack 으로도 안 보냈으면 화면에 띄운다.
+    if not args.out and "slack" not in targets:
         print(report)
     return 0
 
@@ -182,9 +194,15 @@ def main(argv: list[str] | None = None) -> int:
 
     cfg = config.Config.from_env()
     if args.mode == "hall-of-fame":
+        # 명시하지 않으면 화면 출력. Slack 을 원하면 --deliver slack 을 준다.
+        hof_targets = [] if args.deliver == "auto" else deliver.resolve(args.deliver, cfg)
         # 19회 연속 호출 → 비인증(분당 10회)이면 스로틀링으로 매우 느려진다.
-        cfg.validate(need_llm=False, targets=[], want_token=True)
-        return run_hall_of_fame(args, cfg)
+        cfg.validate(
+            need_llm=False,
+            targets=[] if args.dry_run else hof_targets,
+            want_token=True,
+        )
+        return run_hall_of_fame(args, cfg, hof_targets)
 
     targets = deliver.resolve(args.deliver, cfg)
     cfg.validate(need_llm=not args.no_llm, targets=[] if args.dry_run else targets)
