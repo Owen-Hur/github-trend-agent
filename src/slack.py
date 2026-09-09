@@ -121,4 +121,16 @@ def build_payload(briefing: Briefing) -> dict:
 
 
 def send(webhook_url: str, briefing: Briefing) -> None:
-    post_json(webhook_url, build_payload(briefing))
+    """Slack 은 실패해도 200 을 주는 경우가 있어 응답 본문까지 확인한다.
+
+    성공은 정확히 "ok". 그 외(channel_not_found, action_prohibited 등)는
+    메시지가 조용히 버려진 것이므로 실패로 처리한다.
+    """
+    body = post_json(webhook_url, build_payload(briefing)).strip()
+    if body != "ok":
+        raise RuntimeError(
+            f"Slack 이 메시지를 거부했습니다: {body!r}\n"
+            "  channel_not_found → 웹훅이 가리키는 채널이 삭제·전환됐습니다.\n"
+            "  action_prohibited → 앱이 해당 채널에서 제거됐습니다.\n"
+            "  둘 다 Incoming Webhooks 에서 웹훅을 새로 발급해야 합니다."
+        )
