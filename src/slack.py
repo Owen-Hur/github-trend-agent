@@ -2,17 +2,17 @@
 
 Slack 제약: 메시지당 블록 50개, section text 3,000자.
 초과 시 조용히 잘리거나 400이 나므로 코드에서 미리 지킨다.
+라벨은 src/i18n.py 를 따른다.
 """
 
 from __future__ import annotations
 
+from . import config, i18n, render
 from .http_util import post_json
 from .models import Analysis, Briefing, Repo
 
 MAX_BLOCKS = 50
 MAX_SECTION_CHARS = 3000
-
-_WEEKDAYS = ["월", "화", "수", "목", "금", "토", "일"]
 
 
 def truncate(text: str, limit: int) -> str:
@@ -26,6 +26,7 @@ def _escape(text: str) -> str:
 
 
 def _repo_section(repo: Repo, analysis: Analysis) -> dict:
+    s = i18n.strings(config.LANGUAGE)
     head = f"*<{repo.html_url}|{_escape(repo.full_name)}>*  ⭐ {repo.stars:,}"
     if repo.language:
         head += f"  ·  {_escape(repo.language)}"
@@ -34,9 +35,9 @@ def _repo_section(repo: Repo, analysis: Analysis) -> dict:
         head,
         f"> {_escape(truncate(analysis.summary, 600))}",
         "",
-        f"*적용 분야*  {_escape(', '.join(analysis.domains))}",
-        f"*활용 시나리오*  {_escape(truncate(analysis.use_case, 700))}",
-        f"*확장 아이디어*  {_escape(truncate(analysis.extension_idea, 700))}",
+        f"*{s['field_domains']}*  {_escape(', '.join(analysis.domains))}",
+        f"*{s['field_use_case']}*  {_escape(truncate(analysis.use_case, 700))}",
+        f"*{s['field_extension']}*  {_escape(truncate(analysis.extension_idea, 700))}",
     ]
     return {
         "type": "section",
@@ -45,23 +46,17 @@ def _repo_section(repo: Repo, analysis: Analysis) -> dict:
 
 
 def build_blocks(briefing: Briefing) -> list[dict]:
-    date_label = _date_label(briefing.generated_at)
+    s = i18n.strings(config.LANGUAGE)
     blocks: list[dict] = [
         {
             "type": "header",
-            "text": {"type": "plain_text", "text": f"🔭 GitHub 트렌드 브리핑 · {date_label}"},
+            "text": {"type": "plain_text", "text": render.title(briefing)},
         }
     ]
 
     if briefing.is_empty:
         blocks.append(
-            {
-                "type": "section",
-                "text": {
-                    "type": "mrkdwn",
-                    "text": "이번 회차에는 기준을 통과한 신규 저장소가 없습니다.",
-                },
-            }
+            {"type": "section", "text": {"type": "mrkdwn", "text": s["empty"]}}
         )
         return blocks
 
@@ -70,7 +65,12 @@ def build_blocks(briefing: Briefing) -> list[dict]:
             {
                 "type": "context",
                 "elements": [
-                    {"type": "mrkdwn", "text": f"최근 7일 신규 · {len(briefing.fresh)}건"}
+                    {
+                        "type": "mrkdwn",
+                        "text": s["fresh_heading"].format(
+                            days=config.WINDOW_DAYS, count=len(briefing.fresh)
+                        ),
+                    }
                 ],
             }
         )
@@ -82,14 +82,17 @@ def build_blocks(briefing: Briefing) -> list[dict]:
         blocks.append(
             {
                 "type": "header",
-                "text": {"type": "plain_text", "text": "🔥 뒤늦게 터진 것"},
+                "text": {"type": "plain_text", "text": s["breakout_heading"]},
             }
         )
         blocks.append(
             {
                 "type": "context",
                 "elements": [
-                    {"type": "mrkdwn", "text": "7일 윈도우를 지난 뒤 급상승한 대형 저장소"}
+                    {
+                        "type": "mrkdwn",
+                        "text": s["breakout_note"].format(days=config.WINDOW_DAYS),
+                    }
                 ],
             }
         )
@@ -103,33 +106,19 @@ def build_blocks(briefing: Briefing) -> list[dict]:
     if len(blocks) > MAX_BLOCKS:
         blocks = blocks[: MAX_BLOCKS - 1]
         blocks.append(
-            {
-                "type": "context",
-                "elements": [{"type": "mrkdwn", "text": "…블록 수 제한으로 일부 생략됨"}],
-            }
+            {"type": "context", "elements": [{"type": "mrkdwn", "text": s["truncated"]}]}
         )
     return blocks
 
 
 def build_payload(briefing: Briefing) -> dict:
-    date_label = _date_label(briefing.generated_at)
     count = len(briefing.fresh) + len(briefing.breakout)
     return {
         # 알림 미리보기와 블록 미지원 클라이언트용 폴백 텍스트
-        "text": f"GitHub 트렌드 브리핑 · {date_label} · {count}건",
+        "text": f"{render.title(briefing)} · {count}",
         "blocks": build_blocks(briefing),
     }
 
 
 def send(webhook_url: str, briefing: Briefing) -> None:
     post_json(webhook_url, build_payload(briefing))
-
-
-def _date_label(iso: str) -> str:
-    from datetime import datetime
-
-    try:
-        dt = datetime.fromisoformat(iso)
-    except ValueError:
-        return iso
-    return f"{dt:%Y-%m-%d} ({_WEEKDAYS[dt.weekday()]})"

@@ -32,6 +32,11 @@ SEEN_RETENTION_DAYS = 30
 
 README_EXCERPT_CHARS = 1000
 
+# 브리핑 언어. BRIEFING_LANG 환경변수로 덮어쓴다 (예: BRIEFING_LANG=English).
+# 등록된 언어는 src/i18n.py 의 available() 참고. 미등록 언어를 넣으면
+# 라벨은 English, LLM 본문은 지정한 언어로 생성된다.
+LANGUAGE = (os.environ.get("BRIEFING_LANG") or "").strip() or "한국어"
+
 MODEL = "claude-opus-5"
 # temperature 는 현행 Messages API 에서 제거됐다(전송 시 400).
 # 깊이 조절은 output_config.effort 로 한다: low | medium | high | xhigh | max
