@@ -161,6 +161,18 @@ check("웹훅 URL 형식 오류 차단",
       expect_exit(config.Config("t", "k", "https://hooks.slack.com/x", "o/r"),
                   need_llm=False, targets=["slack"]))
 
+print("\n분야별 트랙 실행 요일")
+from src.main import local_weekday, topics_enabled  # noqa: E402
+_fri = datetime(2026, 9, 11, tzinfo=timezone.utc)   # KST 금
+_wed = datetime(2026, 9, 9, tzinfo=timezone.utc)    # KST 수
+_thu_late = datetime(2026, 9, 10, 15, tzinfo=timezone.utc)  # KST 금 00:00
+check("금요일에 실행", topics_enabled("auto", _fri))
+check("평일에는 건너뜀", not topics_enabled("auto", _wed))
+check("KST 기준 경계(UTC 목 15시=KST 금 0시)", topics_enabled("auto", _thu_late))
+check("UTC 기준이었다면 목요일", _thu_late.weekday() == 3 and local_weekday(_thu_late) == 4)
+check("--topics on 은 요일 무시", topics_enabled("on", _wed))
+check("--topics off 는 금요일에도 건너뜀", not topics_enabled("off", _fri))
+
 print("\n언어 설정")
 check("기본은 한국어", config.LANGUAGE == "한국어" and "적용 분야" in render.to_markdown(b))
 check("한국어 분야 태그", i18n.domains("한국어")[0] == "AI/ML" and "백엔드" in i18n.domains("한국어"))

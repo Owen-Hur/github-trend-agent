@@ -12,12 +12,29 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from . import analyzer, config, deliver, hall_of_fame, render, slack
 from .dedup import SeenStore
 from .github_client import GitHubClient
 from .models import Briefing, Repo
+
+
+_WEEKDAY_NAMES = ["월", "화", "수", "목", "금", "토", "일"]
+
+
+def local_weekday(now: datetime) -> int:
+    """설정된 시간대(기본 KST) 기준 요일. 0=월 … 6=일."""
+    return (now + timedelta(hours=config.LOCAL_UTC_OFFSET_HOURS)).weekday()
+
+
+def topics_enabled(mode: str, now: datetime) -> bool:
+    """분야별 트랙 실행 여부. on/off 는 요일과 무관하게 강제한다."""
+    if mode == "on":
+        return True
+    if mode == "off":
+        return False
+    return local_weekday(now) in config.TOPIC_WEEKDAYS
 
 
 def pick(repos: list[Repo], count: int) -> list[Repo]:
@@ -50,7 +67,13 @@ def run_briefing(args: argparse.Namespace, cfg: config.Config, targets: list[str
     print(f"  중복 제거 후 {len(breakout)}건 확정\n")
 
     topics: dict[str, list[Repo]] = {}
-    for track in config.TOPIC_TRACKS:
+    run_topics = topics_enabled(args.topics, now)
+    if not run_topics:
+        weekdays = ", ".join(_WEEKDAY_NAMES[d] for d in config.TOPIC_WEEKDAYS)
+        print(f"[분야별 트랙] 건너뜀 — {weekdays}요일에만 실행합니다 "
+              f"(오늘은 {_WEEKDAY_NAMES[local_weekday(now)]}요일). "
+              f"강제 실행하려면 --topics on\n")
+    for track in config.TOPIC_TRACKS if run_topics else []:
         candidates, total = client.search_topic(track, now)
         # 메인 트랙에서 이미 뽑힌 저장소는 분야 트랙에서도 제외한다.
         already = {r.full_name for r in fresh + breakout}
@@ -145,6 +168,12 @@ def main(argv: list[str] | None = None) -> int:
         default="auto",
         help="전달 대상 쉼표 구분 (%s). auto는 준비된 수단을 자동 선택"
         % ", ".join(deliver.TARGETS),
+    )
+    p.add_argument(
+        "--topics",
+        choices=["auto", "on", "off"],
+        default="auto",
+        help="분야별 트랙 실행 여부. auto 는 설정된 요일에만 실행 (기본)",
     )
     p.add_argument("--since", type=int, default=hall_of_fame.FIRST_YEAR)
     p.add_argument("--top", type=int, default=10)

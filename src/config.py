@@ -29,6 +29,15 @@ BREAKOUT_PICK_COUNT = 3
 # Agent 는 30일/⭐50 이면 490건으로 지나치게 넓어 임계치를 1000 으로 올렸다(풀 25건).
 TOPIC_WINDOW_DAYS = 30
 TOPIC_PICK_COUNT = 3
+
+# 분야별 트랙을 실행할 요일 (0=월 … 4=금 … 6=일).
+# 후보 풀이 얕아(Finance 30일 8건) 매일 소비하면 며칠 만에 고갈된다.
+# 주 1회로 두면 30일치가 그대로 쌓여 매번 상위권이 나온다.
+TOPIC_WEEKDAYS = [4]  # 금요일
+
+# 요일 판정 기준 시간대. cron 은 UTC 로 돌지만 사용자는 KST 로 생각하므로
+# UTC 목요일 15:00(=KST 금요일 00:00) 부터 금요일로 본다.
+LOCAL_UTC_OFFSET_HOURS = 9
 TOPIC_TRACKS = [
     {"name": "Finance", "query": "finance OR fintech OR banking", "min_stars": 50},
     {"name": "Quant", "query": "quant OR quantitative OR alpha-research", "min_stars": 50},
