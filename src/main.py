@@ -183,7 +183,7 @@ def main(argv: list[str] | None = None) -> int:
     cfg = config.Config.from_env()
     if args.mode == "hall-of-fame":
         # 19회 연속 호출 → 비인증(분당 10회)이면 스로틀링으로 매우 느려진다.
-        cfg.validate(need_llm=False, need_slack=False, want_token=True)
+        cfg.validate(need_llm=False, targets=[], want_token=True)
         return run_hall_of_fame(args, cfg)
 
     targets = deliver.resolve(args.deliver, cfg)
