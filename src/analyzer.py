@@ -6,7 +6,7 @@
 
 from __future__ import annotations
 
-from . import config
+from . import config, i18n
 from .models import DOMAINS, Analysis, Repo
 
 SYSTEM_TEMPLATE = """당신은 개발팀에 GitHub 신규 저장소를 소개하는 기술 애널리스트다.
@@ -79,7 +79,9 @@ def analyze(repos: list[Repo], api_key: str) -> dict[str, Analysis]:
     prompt = f"다음 {len(repos)}개 저장소를 분석하라.\n\n{blocks}"
 
     try:
-        client = anthropic.Anthropic(api_key=api_key)
+        # CI 러너에서 간헐적 Connection error 가 관측됐다. 기본 재시도 2회로는
+        # 부족해 늘리고, 타임아웃도 넉넉히 준다.
+        client = anthropic.Anthropic(api_key=api_key, max_retries=5, timeout=180.0)
         resp = client.messages.create(
             model=config.MODEL,
             max_tokens=config.MAX_TOKENS,
@@ -116,15 +118,22 @@ def _to_analyses(items: list[dict]) -> dict[str, Analysis]:
     return out
 
 
-def analyze_with_fallback(repos: list[Repo], api_key: str | None) -> list[tuple[Repo, Analysis]]:
-    """분석에 실패한 저장소만 골라 fallback을 채운다.
+def analyze_with_fallback(
+    repos: list[Repo], api_key: str | None
+) -> tuple[list[tuple[Repo, Analysis]], bool]:
+    """분석 결과와 '전량 실패 여부'를 함께 돌려준다.
 
     LLM을 아예 쓰지 않은 경우와 호출이 실패한 경우를 구분해 표기한다.
+    전량 실패는 호출자가 발송을 중단할 수 있도록 신호로 올린다 —
+    분석 없는 브리핑을 보내면 쓸모도 없거니와 저장소 재고만 소진된다.
     """
+    s = i18n.strings(config.LANGUAGE)
     if api_key:
         results = analyze(repos, api_key)
-        reason = "분석 실패"
+        reason = s["reason_failed"]
     else:
         results = {}
-        reason = "LLM 미사용"
-    return [(r, results.get(r.full_name) or Analysis.fallback(r, reason)) for r in repos]
+        reason = s["reason_no_llm"]
+    paired = [(r, results.get(r.full_name) or Analysis.fallback(r, reason)) for r in repos]
+    all_failed = bool(api_key) and bool(repos) and not results
+    return paired, all_failed

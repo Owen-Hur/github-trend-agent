@@ -83,6 +83,13 @@ class GitHubClient:
         print(f"[트랙 B] {q}")
         return self.search(q, config.CANDIDATE_PER_PAGE)
 
+    def search_topic(self, track: dict, now: datetime | None = None) -> tuple[list[Repo], int]:
+        """분야별 트랙 — 니치 분야는 7일 윈도우로 성립하지 않아 30일을 쓴다."""
+        since = _days_ago(config.TOPIC_WINDOW_DAYS, now)
+        q = f"{track['query']} stars:>{track['min_stars']} created:>{since}"
+        print(f"[{track['name']}] {q}")
+        return self.search(q, config.CANDIDATE_PER_PAGE)
+
     def search_year(self, year: int, min_stars: int = 1000, top: int = 10) -> tuple[list[Repo], int]:
         """명예의 전당 — 해당 연도에 생성된 저장소의 현재 누적 별 상위 N건."""
         q = f"created:{year}-01-01..{year}-12-31 stars:>{min_stars}"

@@ -11,8 +11,9 @@
 ```
 GitHub Actions cron (매일 00:00 UTC = 09:00 KST)
         │
-        ├─ 트랙 A  created:>7일전 stars:>50      → 후보 30건
-        ├─ 트랙 B  created:>30일전 stars:>5000   → 뒤늦게 터진 대형 건
+        ├─ 트랙 A  created:>7일전 stars:>50      → 상위 5건
+        ├─ 트랙 B  created:>30일전 stars:>5000   → 뒤늦게 터진 대형 건 3건
+        ├─ 분야별  Finance / Quant / Trading / Agent → 각 3건
         │
         ├─ 중복 제거   state/seen_repos.json (30일 보관)
         ├─ 품질 하한선  ⭐50 미만이면 건수를 줄여 발송
@@ -192,6 +193,21 @@ GH_PAT=ghp_... python3 -m src.main --mode hall-of-fame -o HALL_OF_FAME.md
 1일 윈도우는 성립하지 않는다. `created:>어제 stars:>10` → **0건**. 갓 생성된 저장소는 별이 붙을 물리적 시간이 없어 최소 2~3일의 인큐베이션이 필요하다.
 7일 윈도우는 그 인큐베이션을 충분히 포함하면서, 중복 제거와 맞물려 **한 번 놓친 저장소를 다음 회차에 회수**한다.
 
+### 분야별 트랙은 왜 30일 윈도우인가
+
+7일 윈도우로는 니치 분야가 성립하지 않는다. 실측(⭐>50 기준):
+
+| 분야 | 7일 | 30일 |
+|---|---:|---:|
+| Finance | 1건 | 8건 |
+| Quant | 1건 | 10건 |
+| Trading | 1건 | 22건 |
+| Agent | 23건 | 490건 |
+
+Finance·Quant·Trading 은 7일 안에 3건을 채울 수조차 없어 **30일 윈도우**를 쓴다.
+반대로 Agent 는 30일/⭐50 이면 490건으로 지나치게 넓어 **임계치만 ⭐1000 으로 올렸다**(풀 25건).
+분야마다 기준을 따로 두는 이유다 — `TOPIC_TRACKS` 의 각 항목이 자기 `min_stars` 를 갖는다.
+
 ### 왜 README 보강이 필수인가
 
 후보 top30 중 **`topics`가 빈 저장소 23건(77%)**, `description` 80자 미만 18건(60%). 보강 없이는 LLM에 넘길 재료가 저장소 이름뿐인 경우가 태반이다.
@@ -224,6 +240,9 @@ GH_PAT=ghp_... python3 -m src.main --mode hall-of-fame -o HALL_OF_FAME.md
 | `BREAKOUT_WINDOW_DAYS` | 30 | 트랙 B 윈도우 |
 | `BREAKOUT_MIN_STARS` | 5000 | 트랙 B 별 임계치 |
 | `SEEN_RETENTION_DAYS` | 30 | 소개 이력 보관 기간 |
+| `TOPIC_WINDOW_DAYS` | 30 | 분야별 트랙 윈도우 |
+| `TOPIC_PICK_COUNT` | 3 | 분야당 발송 건수 |
+| `TOPIC_TRACKS` | 4개 | 분야별 검색어·임계치 (분야마다 개별 설정) |
 | `LANGUAGE` | 한국어 | 브리핑 언어 (`BRIEFING_LANG` 환경변수로 덮어씀) |
 
 매일 발송에서는 `PICK_COUNT`가 품질을 가르는 손잡이다. 5로 두면 하루 5건이 나가지만 주 후반으로 갈수록 별점대가 내려간다. 3으로 낮추면 회당 상위권만 남는다.
@@ -240,7 +259,7 @@ BRIEFING_LANG=English python3 -m src.main --dry-run --no-llm
 
 ## 테스트
 
-네트워크 없이 도는 핵심 로직 테스트 55건.
+네트워크 없이 도는 핵심 로직 테스트 68건.
 
 ```bash
 python3 -m tests.test_core

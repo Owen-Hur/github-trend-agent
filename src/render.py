@@ -77,4 +77,16 @@ def to_markdown(briefing: Briefing, *, heading: bool = True) -> str:
         for repo, analysis in briefing.breakout:
             lines += _repo_block(repo, analysis)
 
+    for name, items in briefing.topics.items():
+        if not items:
+            continue
+        lines += [
+            "## " + s["topic_heading"].format(name=name, count=len(items)),
+            "",
+            s["topic_note"].format(name=name, days=config.TOPIC_WINDOW_DAYS),
+            "",
+        ]
+        for repo, analysis in items:
+            lines += _repo_block(repo, analysis)
+
     return "\n".join(lines).rstrip() + "\n"
