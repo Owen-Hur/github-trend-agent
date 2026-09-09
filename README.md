@@ -13,7 +13,7 @@ GitHub Actions cron (매일 00:00 UTC = 09:00 KST)
         │
         ├─ 트랙 A  created:>7일전 stars:>50      → 상위 5건
         ├─ 트랙 B  created:>30일전 stars:>5000   → 뒤늦게 터진 대형 건 3건
-        ├─ 분야별  Finance / Quant / Trading / Agent → 각 3건
+        ├─ 분야별  Finance / Quant / Trading / Agent → 각 3건 (금요일만)
         │
         ├─ 중복 제거   state/seen_repos.json (30일 보관)
         ├─ 품질 하한선  ⭐50 미만이면 건수를 줄여 발송
@@ -136,6 +136,7 @@ python3 -m src.main [옵션]
 | `--dry-run` | 실제 전달 없이 결과만 출력. 상태 파일도 건드리지 않는다 |
 | `--no-llm` | LLM 분석을 건너뛰고 원본 description 사용 |
 | `--deliver` | 전달 대상. 쉼표 구분. 기본값 `auto` |
+| `--topics` | `auto`(요일 따름, 기본) / `on`(강제 실행) / `off`(강제 생략) |
 | `--mode` | `briefing`(기본) 또는 `hall-of-fame` |
 
 ### 전달 대상
@@ -242,6 +243,7 @@ Finance·Quant·Trading 은 7일 안에 3건을 채울 수조차 없어 **30일 
 | `SEEN_RETENTION_DAYS` | 30 | 소개 이력 보관 기간 |
 | `TOPIC_WINDOW_DAYS` | 30 | 분야별 트랙 윈도우 |
 | `TOPIC_PICK_COUNT` | 3 | 분야당 발송 건수 |
+| `TOPIC_WEEKDAYS` | [4] | 분야별 트랙 실행 요일 (0=월, 4=금), KST 기준 |
 | `TOPIC_TRACKS` | 4개 | 분야별 검색어·임계치 (분야마다 개별 설정) |
 | `LANGUAGE` | 한국어 | 브리핑 언어 (`BRIEFING_LANG` 환경변수로 덮어씀) |
 
@@ -259,7 +261,7 @@ BRIEFING_LANG=English python3 -m src.main --dry-run --no-llm
 
 ## 테스트
 
-네트워크 없이 도는 핵심 로직 테스트 68건.
+네트워크 없이 도는 핵심 로직 테스트 74건.
 
 ```bash
 python3 -m tests.test_core
