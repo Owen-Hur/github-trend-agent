@@ -7,6 +7,8 @@ Slack 제약: 메시지당 블록 50개, section text 3,000자.
 
 from __future__ import annotations
 
+import time
+
 from . import config, i18n, render
 from .http_util import post_json
 from .models import Analysis, Briefing, Repo
@@ -100,24 +102,95 @@ def build_blocks(briefing: Briefing) -> list[dict]:
             blocks.append(_repo_section(repo, analysis))
             blocks.append({"type": "divider"})
 
+    for name, items in briefing.topics.items():
+        if not items:
+            continue
+        blocks.append(
+            {
+                "type": "header",
+                "text": {
+                    "type": "plain_text",
+                    "text": s["topic_heading"].format(name=name, count=len(items)),
+                },
+            }
+        )
+        blocks.append(
+            {
+                "type": "context",
+                "elements": [
+                    {
+                        "type": "mrkdwn",
+                        "text": s["topic_note"].format(
+                            name=name, days=config.TOPIC_WINDOW_DAYS
+                        ),
+                    }
+                ],
+            }
+        )
+        for repo, analysis in items:
+            blocks.append(_repo_section(repo, analysis))
+            blocks.append({"type": "divider"})
+
     if blocks and blocks[-1].get("type") == "divider":
         blocks.pop()
-
-    if len(blocks) > MAX_BLOCKS:
-        blocks = blocks[: MAX_BLOCKS - 1]
-        blocks.append(
-            {"type": "context", "elements": [{"type": "mrkdwn", "text": s["truncated"]}]}
-        )
     return blocks
 
 
+def chunk_blocks(blocks: list[dict]) -> list[list[dict]]:
+    """50블록 한도에 맞춰 나눈다. header 로 시작하는 구획은 쪼개지 않는다.
+
+    잘라내면 뒤쪽 분야가 통째로 사라지므로, 자르는 대신 메시지를 나눈다.
+    """
+    if len(blocks) <= MAX_BLOCKS:
+        return [blocks]
+
+    pages: list[list[dict]] = []
+    current: list[dict] = []
+    for block in blocks:
+        # header 앞에서 끊으면 구획이 메시지를 가로지르지 않는다.
+        starts_section = block.get("type") == "header" and current
+        if starts_section and len(current) > MAX_BLOCKS - 12:
+            pages.append(current)
+            current = []
+        elif len(current) >= MAX_BLOCKS - 1:
+            pages.append(current)
+            current = []
+        current.append(block)
+    if current:
+        pages.append(current)
+    return pages
+
+
+def build_payloads(briefing: Briefing) -> list[dict]:
+    s = i18n.strings(config.LANGUAGE)
+    pages = chunk_blocks(build_blocks(briefing))
+    payloads = []
+    for i, page in enumerate(pages, 1):
+        if len(pages) > 1:
+            page = page + [
+                {
+                    "type": "context",
+                    "elements": [
+                        {
+                            "type": "mrkdwn",
+                            "text": s["continued"].format(page=i, total=len(pages)),
+                        }
+                    ],
+                }
+            ]
+        payloads.append(
+            {
+                # 알림 미리보기와 블록 미지원 클라이언트용 폴백 텍스트
+                "text": f"{render.title(briefing)} · {briefing.total}",
+                "blocks": page,
+            }
+        )
+    return payloads
+
+
 def build_payload(briefing: Briefing) -> dict:
-    count = len(briefing.fresh) + len(briefing.breakout)
-    return {
-        # 알림 미리보기와 블록 미지원 클라이언트용 폴백 텍스트
-        "text": f"{render.title(briefing)} · {count}",
-        "blocks": build_blocks(briefing),
-    }
+    """단일 페이로드가 필요한 곳(미리보기 등)에서 첫 장을 돌려준다."""
+    return build_payloads(briefing)[0]
 
 
 def send(webhook_url: str, briefing: Briefing) -> None:
@@ -126,11 +199,17 @@ def send(webhook_url: str, briefing: Briefing) -> None:
     성공은 정확히 "ok". 그 외(channel_not_found, action_prohibited 등)는
     메시지가 조용히 버려진 것이므로 실패로 처리한다.
     """
-    body = post_json(webhook_url, build_payload(briefing)).strip()
-    if body != "ok":
-        raise RuntimeError(
-            f"Slack 이 메시지를 거부했습니다: {body!r}\n"
-            "  channel_not_found → 웹훅이 가리키는 채널이 삭제·전환됐습니다.\n"
-            "  action_prohibited → 앱이 해당 채널에서 제거됐습니다.\n"
-            "  둘 다 Incoming Webhooks 에서 웹훅을 새로 발급해야 합니다."
-        )
+    payloads = build_payloads(briefing)
+    for i, payload in enumerate(payloads):
+        if i:
+            time.sleep(1.2)  # 웹훅 URL당 초당 1회 제한
+        body = post_json(webhook_url, payload).strip()
+        if body != "ok":
+            raise RuntimeError(
+                f"Slack 이 메시지를 거부했습니다 ({i + 1}/{len(payloads)}): {body!r}\n"
+                "  channel_not_found → 웹훅이 가리키는 채널이 삭제·전환됐습니다.\n"
+                "  action_prohibited → 앱이 해당 채널에서 제거됐습니다.\n"
+                "  둘 다 Incoming Webhooks 에서 웹훅을 새로 발급해야 합니다."
+            )
+    if len(payloads) > 1:
+        print(f"  (블록 한도로 {len(payloads)}개 메시지로 나눠 발송)")

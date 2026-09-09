@@ -23,6 +23,19 @@ BREAKOUT_WINDOW_DAYS = 30
 BREAKOUT_MIN_STARS = 5000
 BREAKOUT_PICK_COUNT = 3
 
+# ── 분야별 트랙 (2026-09-09 실측으로 윈도우·임계치 결정) ────────────
+# 7일 윈도우로는 니치 분야가 성립하지 않는다(Finance/Quant/Trading 모두 1건).
+# 30일 윈도우에서 각각 8/10/22건 풀이 나와 3건씩 뽑기에 충분하다.
+# Agent 는 30일/⭐50 이면 490건으로 지나치게 넓어 임계치를 1000 으로 올렸다(풀 25건).
+TOPIC_WINDOW_DAYS = 30
+TOPIC_PICK_COUNT = 3
+TOPIC_TRACKS = [
+    {"name": "Finance", "query": "finance OR fintech OR banking", "min_stars": 50},
+    {"name": "Quant", "query": "quant OR quantitative OR alpha-research", "min_stars": 50},
+    {"name": "Trading", "query": "trading OR backtesting OR exchange", "min_stars": 50},
+    {"name": "Agent", "query": "agent OR agentic OR multi-agent", "min_stars": 1000},
+]
+
 # 품질 하한선: 이 미만이면 건수를 채우지 않고 줄여 발송한다.
 QUALITY_FLOOR = 50
 

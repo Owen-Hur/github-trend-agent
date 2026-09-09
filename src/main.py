@@ -49,7 +49,21 @@ def run_briefing(args: argparse.Namespace, cfg: config.Config, targets: list[str
     breakout = store.filter_unseen(breakout_candidates, "breakout")[: config.BREAKOUT_PICK_COUNT]
     print(f"  중복 제거 후 {len(breakout)}건 확정\n")
 
-    selected = fresh + breakout
+    topics: dict[str, list[Repo]] = {}
+    for track in config.TOPIC_TRACKS:
+        candidates, total = client.search_topic(track, now)
+        # 메인 트랙에서 이미 뽑힌 저장소는 분야 트랙에서도 제외한다.
+        already = {r.full_name for r in fresh + breakout}
+        unseen = [
+            r
+            for r in store.filter_unseen(candidates, f"topic:{track['name']}")
+            if r.full_name not in already
+        ]
+        picked = pick(unseen, config.TOPIC_PICK_COUNT)
+        topics[track["name"]] = picked
+        print(f"  후보 {len(candidates)}건 (전체 {total:,}건) → {len(picked)}건 확정\n")
+
+    selected = fresh + breakout + [r for v in topics.values() for r in v]
     if not selected:
         print("기준을 통과한 신규 저장소가 없습니다.")
 
@@ -62,13 +76,27 @@ def run_briefing(args: argparse.Namespace, cfg: config.Config, targets: list[str
     api_key = cfg.anthropic_key if use_llm else None
     if use_llm and selected:
         print(f"LLM 분석 ({config.MODEL}, {len(selected)}건 배치)...")
-    analyzed = analyzer.analyze_with_fallback(selected, api_key)
+    analyzed, all_failed = analyzer.analyze_with_fallback(selected, api_key)
+    if all_failed and not args.dry_run:
+        # 분석 없는 브리핑을 보내면 쓸모가 없는 데다, 저장소가 소개 이력에
+        # 기록되어 다음 회차에서 제외된다. 발송하지 않고 실패로 끝낸다.
+        print(
+            "\n중단: LLM 분석이 전량 실패했습니다. 발송하지 않고 상태도 갱신하지 않습니다.\n"
+            "  일시적 네트워크 오류일 수 있으니 워크플로를 재실행해 보세요.\n"
+            "  분석 없이 강행하려면 --no-llm 을 붙이면 됩니다.",
+            file=sys.stderr,
+        )
+        return 1
 
     by_name = {r.full_name: (r, a) for r, a in analyzed}
     briefing = Briefing(
         generated_at=now.isoformat(),
         fresh=[by_name[r.full_name] for r in fresh],
         breakout=[by_name[r.full_name] for r in breakout],
+        topics={
+            name: [by_name[r.full_name] for r in items]
+            for name, items in topics.items()
+        },
     )
 
     if args.dry_run:
@@ -87,6 +115,8 @@ def run_briefing(args: argparse.Namespace, cfg: config.Config, targets: list[str
 
     store.mark(fresh, "fresh", now)
     store.mark(breakout, "breakout", now)
+    for name, items in topics.items():
+        store.mark(items, f"topic:{name}", now)
     store.save()
     print(f"상태 파일 갱신: {store.path}")
     return 0

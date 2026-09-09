@@ -91,7 +91,13 @@ class Briefing:
     generated_at: str
     fresh: list[tuple[Repo, Analysis]] = field(default_factory=list)
     breakout: list[tuple[Repo, Analysis]] = field(default_factory=list)
+    # 분야명 → 저장소 목록. 입력 순서(config.TOPIC_TRACKS 순서)를 유지한다.
+    topics: dict[str, list[tuple[Repo, Analysis]]] = field(default_factory=dict)
 
     @property
     def is_empty(self) -> bool:
-        return not self.fresh and not self.breakout
+        return not self.fresh and not self.breakout and not any(self.topics.values())
+
+    @property
+    def total(self) -> int:
+        return len(self.fresh) + len(self.breakout) + sum(len(v) for v in self.topics.values())

@@ -93,7 +93,22 @@ check("mrkdwn 이스케이프", "&lt;script&gt;" in str(
                                  fresh=[(repo("o/r", 500), Analysis("o/r", "<script>", ["기타"], "", ""))]))))
 
 many = Briefing("2026-09-11T00:00:00+00:00", fresh=[(repo(f"o/{i}", 500), a) for i in range(40)])
-check("대량 입력 시 블록 절단", len(slack.build_blocks(many)) <= slack.MAX_BLOCKS)
+pages = slack.chunk_blocks(slack.build_blocks(many))
+check("대량 입력 시 여러 메시지로 분할", len(pages) > 1)
+check("모든 페이지가 블록 한도 이내", all(len(pg) < slack.MAX_BLOCKS for pg in pages))
+check("분할해도 저장소가 유실되지 않음",
+      sum(1 for pg in pages for bl in pg if bl.get("type") == "section") == 40)
+check("페이로드도 페이지 수만큼 생성", len(slack.build_payloads(many)) == len(pages))
+
+topical = Briefing("2026-09-11T00:00:00+00:00",
+                   fresh=[(repo("o/r", 500), a)],
+                   topics={"Finance": [(repo("f/x", 300), a)], "Quant": []})
+check("분야 트랙 렌더링", "📌 Finance" in str(slack.build_blocks(topical)))
+check("빈 분야는 생략", "Quant" not in str(slack.build_blocks(topical)))
+check("분야 트랙이 Markdown 에도 반영", "📌 Finance" in render.to_markdown(topical))
+check("total 이 분야까지 합산", topical.total == 2)
+check("분야만 있어도 비어있지 않음",
+      not Briefing("2026-09-11T00:00:00+00:00", topics={"Finance": [(repo("f/x"), a)]}).is_empty)
 
 check("빈 브리핑 처리", len(slack.build_blocks(Briefing("2026-09-11T00:00:00+00:00"))) == 2)
 
