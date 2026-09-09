@@ -1,7 +1,7 @@
 # GitHub 트렌드 분석 & Slack 알림 에이전트 — 설계 로드맵
 
 > 최종 갱신: 실행 주기 주 2회(화·금) 확정, 중복 제거·README 보강 필수화, 명예의 전당 모드 추가
-> 스택 확정: Python + Claude API(`claude-sonnet-5`) + Slack Incoming Webhook
+> 스택 확정: Python + Claude API(`claude-opus-5`) + Slack Incoming Webhook
 
 ## 1. 아키텍처
 
@@ -83,7 +83,7 @@ Claude Messages API + **tool schema로 4개 필드를 강제**한다. 자유 텍
 | 확장 아이디어 | string | 타 도구 결합 시 고도화 방향 |
 
 - 저장소 3~5건을 **한 번의 호출로 배치 처리**한다 (비용·지연 절감, 저장소 간 톤 일관성 확보)
-- `temperature 0.6`
+- 깊이 조절: `output_config.effort = medium` (현행 API에서 `temperature` 는 제거됨)
 - 실패 시 해당 저장소만 원본 description으로 폴백하고 전체 실행은 계속한다
 
 ### Phase 5 — 전달 (Slack Incoming Webhook)
