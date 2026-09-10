@@ -1,9 +1,9 @@
 # GitHub 트렌드 브리핑 에이전트
 
-매일 오전 9시(KST), 급상승 중인 GitHub 신규 저장소를 수집해 Claude로 분석하고 Slack으로 보낸다.
+매일 오전 9시(KST), 급상승 중인 GitHub 신규 저장소를 수집해 Claude로 분석하고 Slack으로 전송.
 
 저장소마다 **핵심 요약 / 적용 분야 / 활용 시나리오 / 확장 아이디어** 4개 필드가 생성된다.
-윈도우·임계치·주기는 감이 아니라 실제 Search API 측정값으로 정했다 — 근거는 [설계 문서](github_trend_agent_design.md)에 있다.
+윈도우·임계치·주기는 감이 아니라 실제 Search API 측정값으로 정했다 — 근거는 [설계 문서](github_trend_agent_design.md) 참고.
 
 ## 무엇이 언제 오나
 
@@ -24,7 +24,7 @@ GitHub Actions cron (매일 00:00 UTC = 09:00 KST)
    └─ 전달      slack / issue / file / summary / stdout
 ```
 
-맥북이 꺼져 있어도 무관하다. GitHub 서버에서 실행된다.
+맥북이 꺼져 있어도 무관하며, GitHub 서버에서 실행됩니다.
 
 ## 빠른 시작
 
