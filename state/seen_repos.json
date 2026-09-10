@@ -19,10 +19,45 @@
     "stars": 4524,
     "track": "topic:Agent"
   },
+  "Edge0-AI/Edge0": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 787,
+    "track": "fresh"
+  },
   "EverettFish/holo-card-studio": {
     "first_seen": "2026-09-09T07:29:01.991650+00:00",
     "stars": 1179,
     "track": "fresh"
+  },
+  "EvoMap/AutoResearch": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 2916,
+    "track": "topic:Agent"
+  },
+  "KJGX66F/usque-custom-pro": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 745,
+    "track": "fresh"
+  },
+  "MengTo/threeui": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 5513,
+    "track": "breakout"
+  },
+  "Oliveluo666/post-investment-platform": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 103,
+    "track": "topic:Finance"
+  },
+  "QiushenZou/cn-investment-banking-skills": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 101,
+    "track": "topic:Finance"
+  },
+  "RadixRootMind/Awesome-Quant-VLA-WAM": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 113,
+    "track": "topic:Quant"
   },
   "Rion-Wu-tech/wechat-intelligence-hub": {
     "first_seen": "2026-09-09T07:29:01.991650+00:00",
@@ -33,6 +68,11 @@
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
     "stars": 314,
     "track": "topic:Trading"
+  },
+  "VeryVale-RT/quantfeature": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 104,
+    "track": "topic:Quant"
   },
   "Zproger/Aurum": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
@@ -64,6 +104,11 @@
     "stars": 15006,
     "track": "breakout"
   },
+  "casatrickdev/robinhood-trading-tools": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 157,
+    "track": "topic:Trading"
+  },
   "danielblnc/DLSS-NR-on-AMD": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
     "stars": 950,
@@ -79,10 +124,30 @@
     "stars": 216699,
     "track": "breakout"
   },
+  "donvito/codex-astra-luna-orchestrator": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 902,
+    "track": "fresh"
+  },
+  "fidetolabs/qanat": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 116,
+    "track": "topic:Quant"
+  },
+  "fuweiwe1/Finance_Agents": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 82,
+    "track": "topic:Finance"
+  },
   "guillaumemeyer/watermarks-remover": {
     "first_seen": "2026-09-09T07:29:01.991650+00:00",
     "stars": 21447,
     "track": "breakout"
+  },
+  "hypnguyen1209/CVE-2026-62911": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 176,
+    "track": "topic:Trading"
   },
   "kajisho5/ffmpeg-skill": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
@@ -97,6 +162,16 @@
   "livetennisapi/polymarket-tennis": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
     "stars": 326,
+    "track": "topic:Trading"
+  },
+  "lnkiai/m3e-canvas": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 5810,
+    "track": "breakout"
+  },
+  "neilveriemusm/Trpjan-solana-trading-toolkit": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 193,
     "track": "topic:Trading"
   },
   "noskillish/bankmcp": {
@@ -114,6 +189,16 @@
     "stars": 5090,
     "track": "topic:Agent"
   },
+  "sapientinc/PRAXIST": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 6330,
+    "track": "breakout"
+  },
+  "sdli1995/dlssg_for_sm86": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 1312,
+    "track": "fresh"
+  },
   "soul-99/SU_IMD": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
     "stars": 276,
@@ -123,6 +208,21 @@
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
     "stars": 1192,
     "track": "fresh"
+  },
+  "wang2122/sprix-sage-router": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 3599,
+    "track": "topic:Agent"
+  },
+  "yang0/handraw-style": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 858,
+    "track": "fresh"
+  },
+  "yetone/cumora": {
+    "first_seen": "2026-09-10T17:11:44.168892+00:00",
+    "stars": 3546,
+    "track": "topic:Agent"
   },
   "yjh051108/dsh-routing-suite": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
