@@ -50,6 +50,16 @@ gh secret set ANTHROPIC_API_KEY
 gh workflow run "GitHub 트렌드 브리핑"   # 즉시 확인
 ```
 
+> 시크릿을 손으로 붙여넣으면 개행이나 잘린 값이 들어가기 쉽습니다. 개행이 섞이면
+> `LocalProtocolError: Illegal header value`, 값이 잘리면 401 이 납니다.
+> `.env` 가 이미 검증돼 있다면 파일에서 직접 넣는 편이 안전합니다.
+>
+> ```bash
+> set -a; source .env; set +a
+> printf '%s' "$ANTHROPIC_API_KEY" | gh secret set ANTHROPIC_API_KEY
+> printf '%s' "$SLACK_WEBHOOK_URL" | gh secret set SLACK_WEBHOOK_URL
+> ```
+
 ## Slack 웹훅 발급
 
 유료 구독은 필요 없습니다. 무료 플랜의 앱 10개 제한만 걸릴 수 있습니다.
@@ -126,6 +136,7 @@ Claude Code 스킬로도 등록돼 있어 "연도별 top10 보여줘"라고 하�
 
 ## 실패했을 때
 
+- **안전 분류기 거부** → 봇 우회·취약점 공개(CVE) 같은 저장소가 후보에 섞이면 그 README 때문에 배치 전체가 `stop_reason=refusal` 로 돌아옵니다. 배치를 반으로 갈라 재귀 재시도해 **문제 저장소 한 건만 떨어뜨리고 나머지는 살립니다.** 떨어진 저장소는 원본 description 으로 대체되며, 거부 카테고리와 함께 로그에 남습니다.
 - **LLM 전량 실패** → 발송하지 않고 종료 코드 1. 상태도 갱신하지 않아 다음 실행에서 온전히 회수됩니다. 분석 없는 브리핑을 보내면서 저장소 재고만 태우는 일이 없습니다.
 - **잘못된 웹훅** → 응답 본문이 `ok`인지 검증해 조용한 실패를 막습니다.
 - **실행 자체를 놓침** → Actions cron은 밀린 회차를 따라잡지 않습니다. 다만 저장소는 윈도우 안에 남아 다음 실행에서 다시 후보에 오릅니다.
