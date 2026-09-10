@@ -95,6 +95,7 @@ python3 scripts/check_webhook.py --ping   # 어느 채널로 가는지 확인
 | `--no-llm` | 분석을 건너뛰고 원본 description 사용 |
 | `--topics` | `auto`(요일 따름) / `on` / `off` |
 | `--deliver` | `slack` `issue` `file` `summary` `stdout` 쉼표 구분. 기본 `auto` |
+| `--analyze` | hall-of-fame 에 4개 필드 분석을 붙인다 |
 | `--mode` | `briefing`(기본) / `hall-of-fame` |
 
 Slack이 막혀도 코드 수정 없이 대상만 바꾸면 된다 — `--deliver issue,file`.
@@ -108,6 +109,9 @@ GH_PAT=$(gh auth token) python3 -m src.main --mode hall-of-fame -o HALL_OF_FAME.
 
 # Slack 으로 보내기 — 연도당 한 블록의 목록으로 압축된다
 python3 -m src.main --mode hall-of-fame --since 2022 --deliver slack
+
+# 브리핑과 동일한 4개 필드 분석을 붙여 발송 (연도별 배치로 LLM 호출)
+python3 -m src.main --mode hall-of-fame --since 2022 --analyze --deliver slack
 ```
 
 Claude Code 스킬로도 등록돼 있어 "연도별 top10 보여줘"라고 하면 실행된다.
