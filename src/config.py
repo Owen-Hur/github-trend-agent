@@ -90,7 +90,11 @@ class Config:
     @classmethod
     def from_env(cls) -> "Config":
         def clean(name: str) -> str | None:
-            v = (os.environ.get(name) or "").strip()
+            # 시크릿에 줄바꿈·공백이 섞이면 HTTP 헤더로 쓸 수 없어
+            # LocalProtocolError("Illegal header value") 가 난다.
+            # gh secret set 에 붙여넣을 때 개행이 딸려오는 일이 흔하므로
+            # 양끝뿐 아니라 내부 공백까지 제거한다(키·URL 에는 공백이 없다).
+            v = "".join((os.environ.get(name) or "").split())
             return v or None
 
         return cls(
@@ -110,6 +114,11 @@ class Config:
         missing = []
         if need_llm and not self.anthropic_key:
             missing.append("ANTHROPIC_API_KEY (--no-llm 을 쓰면 불필요)")
+        elif need_llm and not self.anthropic_key.isascii():
+            missing.append(
+                "ANTHROPIC_API_KEY 에 비ASCII 문자가 있어 HTTP 헤더로 쓸 수 없습니다 — "
+                "시크릿을 다시 등록하세요"
+            )
         targets = targets or []
         if "slack" in targets and not self.slack_webhook:
             missing.append("SLACK_WEBHOOK_URL (--deliver 에서 slack 을 빼면 불필요)")
