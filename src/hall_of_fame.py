@@ -11,6 +11,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime, timezone
 
+from . import config, i18n
 from .github_client import GitHubClient
 from .models import Repo
 
@@ -29,6 +30,19 @@ class HallOfFame:
     generated_at: str
     top: int
     years: list[YearEntry]
+    # full_name → Analysis. 비어 있으면 순위 목록만 렌더링한다.
+    analyses: dict = None  # type: ignore[assignment]
+
+    def __post_init__(self):
+        if self.analyses is None:
+            self.analyses = {}
+
+    @property
+    def analyzed(self) -> bool:
+        return bool(self.analyses)
+
+    def all_repos(self) -> list[Repo]:
+        return [r for entry in self.years for r in entry.repos]
 
 
 def collect(client: GitHubClient, since: int = FIRST_YEAR, top: int = 10) -> HallOfFame:
@@ -41,6 +55,28 @@ def collect(client: GitHubClient, since: int = FIRST_YEAR, top: int = 10) -> Hal
         print(f"  {year}년 수집 완료 ({len(repos)}건)")
         years.append(YearEntry(year=year, repos=repos, total=total))
     return HallOfFame(generated_at=now.isoformat(), top=top, years=years)
+
+
+def analyze(hof: HallOfFame, client: GitHubClient, api_key: str) -> int:
+    """연도 단위로 나눠 분석한다.
+
+    50건을 한 번에 넣으면 출력 토큰 한도에 걸리고 서술 품질도 떨어진다.
+    연도당 10건 안팎이면 브리핑에서 검증된 배치 크기와 비슷하다.
+    실패한 연도는 건너뛰고 나머지는 계속 진행한다.
+    """
+    from . import analyzer
+
+    done = 0
+    for entry in hof.years:
+        client.enrich(entry.repos)
+        print(f"  {entry.year}년 분석 중 ({len(entry.repos)}건)...")
+        results = analyzer.analyze(entry.repos, api_key)
+        if not results:
+            print(f"  경고: {entry.year}년 분석 실패 — 순위만 표시됩니다")
+            continue
+        hof.analyses.update(results)
+        done += len(results)
+    return done
 
 
 def to_markdown(hof: HallOfFame) -> str:
@@ -67,6 +103,25 @@ def to_markdown(hof: HallOfFame) -> str:
                 f"| {i} | {r.stars:,} | [{r.full_name}]({r.html_url}) | {desc} |"
             )
         lines.append("")
+
+        if hof.analyzed:
+            s = i18n.strings(config.LANGUAGE)
+            for i, r in enumerate(entry.repos, 1):
+                a = hof.analyses.get(r.full_name)
+                if not a:
+                    continue
+                lines += [
+                    f"**{i}. [{r.full_name}]({r.html_url})** · ⭐ {r.stars:,}",
+                    "",
+                    f"> {a.summary}",
+                    "",
+                    f"**{s['field_domains']}** · {', '.join(a.domains)}",
+                    "",
+                    f"**{s['field_use_case']}** · {a.use_case}",
+                    "",
+                    f"**{s['field_extension']}** · {a.extension_idea}",
+                    "",
+                ]
     return "\n".join(lines)
 
 

@@ -193,6 +193,26 @@ def build_payload(briefing: Briefing) -> dict:
     return build_payloads(briefing)[0]
 
 
+def _ranked_section(rank: int, repo: Repo, analysis: Analysis) -> dict:
+    """순위가 붙은 저장소 상세 블록 (명예의 전당용)."""
+    s = i18n.strings(config.LANGUAGE)
+    head = f"*`{rank:>2}.`  <{repo.html_url}|{_escape(repo.full_name)}>*  ⭐ {repo.stars:,}"
+    if repo.language:
+        head += f"  ·  {_escape(repo.language)}"
+    lines = [
+        head,
+        f"> {_escape(truncate(analysis.summary, 600))}",
+        "",
+        f"*{s['field_domains']}*  {_escape(', '.join(analysis.domains))}",
+        f"*{s['field_use_case']}*  {_escape(truncate(analysis.use_case, 700))}",
+        f"*{s['field_extension']}*  {_escape(truncate(analysis.extension_idea, 700))}",
+    ]
+    return {
+        "type": "section",
+        "text": {"type": "mrkdwn", "text": truncate("\n".join(lines), MAX_SECTION_CHARS)},
+    }
+
+
 def build_hall_of_fame_payloads(hof) -> list[dict]:
     """명예의 전당은 연도당 한 블록으로 압축한다.
 
@@ -214,6 +234,35 @@ def build_hall_of_fame_payloads(hof) -> list[dict]:
         },
     ]
     for entry in hof.years:
+        if hof.analyzed:
+            # 분석이 있으면 연도 헤더 + 저장소별 상세 블록
+            blocks.append(
+                {
+                    "type": "header",
+                    "text": {
+                        "type": "plain_text",
+                        "text": f"{entry.year}년  ·  ⭐1k+ 총 {entry.total:,}건",
+                    },
+                }
+            )
+            for i, r in enumerate(entry.repos, 1):
+                a = hof.analyses.get(r.full_name)
+                if a is None:
+                    blocks.append(
+                        {
+                            "type": "section",
+                            "text": {
+                                "type": "mrkdwn",
+                                "text": f"`{i:>2}.` ⭐ {r.stars:>7,}  "
+                                f"<{r.html_url}|{_escape(r.full_name)}>",
+                            },
+                        }
+                    )
+                    continue
+                blocks.append(_ranked_section(i, r, a))
+            blocks.append({"type": "divider"})
+            continue
+
         lines = [f"*{entry.year}년*  ·  ⭐1k+ 총 {entry.total:,}건", ""]
         for i, r in enumerate(entry.repos, 1):
             lines.append(

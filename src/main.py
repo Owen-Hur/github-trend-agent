@@ -149,6 +149,20 @@ def run_hall_of_fame(args: argparse.Namespace, cfg: config.Config, targets: list
     client = GitHubClient(cfg.github_token)
     print(f"{args.since}년~현재 연도별 수집 시작...")
     hof = hall_of_fame.collect(client, since=args.since, top=args.top)
+
+    if args.analyze:
+        total = len(hof.all_repos())
+        print(f"\nLLM 분석 ({config.MODEL}, 연도별 배치, 총 {total}건)...")
+        done = hall_of_fame.analyze(hof, client, cfg.anthropic_key)
+        if not done:
+            print(
+                "\n중단: 분석이 전량 실패했습니다. 발송하지 않습니다.\n"
+                "  --analyze 를 빼면 순위만으로 진행할 수 있습니다.",
+                file=sys.stderr,
+            )
+            return 1
+        print(f"  분석 완료 {done}/{total}건\n")
+
     report = hall_of_fame.to_markdown(hof)
 
     if args.out:
@@ -187,6 +201,11 @@ def main(argv: list[str] | None = None) -> int:
         default="auto",
         help="분야별 트랙 실행 여부. auto 는 설정된 요일에만 실행 (기본)",
     )
+    p.add_argument(
+        "--analyze",
+        action="store_true",
+        help="hall-of-fame 에 브리핑과 동일한 4개 필드 분석을 붙인다 (LLM 호출)",
+    )
     p.add_argument("--since", type=int, default=hall_of_fame.FIRST_YEAR)
     p.add_argument("--top", type=int, default=10)
     p.add_argument("-o", "--out", help="hall-of-fame 리포트 저장 경로")
@@ -198,7 +217,7 @@ def main(argv: list[str] | None = None) -> int:
         hof_targets = [] if args.deliver == "auto" else deliver.resolve(args.deliver, cfg)
         # 19회 연속 호출 → 비인증(분당 10회)이면 스로틀링으로 매우 느려진다.
         cfg.validate(
-            need_llm=False,
+            need_llm=args.analyze,
             targets=[] if args.dry_run else hof_targets,
             want_token=True,
         )
