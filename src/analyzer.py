@@ -6,6 +6,7 @@
 
 from __future__ import annotations
 
+import sys
 import time
 
 from . import config, i18n
@@ -107,19 +108,34 @@ def analyze(repos: list[Repo], api_key: str) -> dict[str, Analysis]:
             )
             break
         except Exception as e:  # 네트워크·인증·한도 무엇이든 전체 실행은 계속한다
-            print(f"  LLM 호출 실패 ({attempt + 1}/{config.LLM_ATTEMPTS}): {_causes(e)}")
+            print(f"  LLM 호출 실패 ({attempt + 1}/{config.LLM_ATTEMPTS}): {_causes(e)}", flush=True)
             if attempt < config.LLM_ATTEMPTS - 1:
                 delay = config.LLM_RETRY_BASE_SECONDS * (attempt + 1)
-                print(f"  {delay}초 후 재시도합니다...")
+                print(f"  {delay}초 후 재시도합니다...", flush=True)
                 time.sleep(delay)
     if resp is None:
-        print("경고: LLM 호출이 모두 실패했습니다. 원본 description으로 대체합니다.")
+        print("경고: LLM 호출이 모두 실패했습니다. 원본 description으로 대체합니다.", flush=True)
         return {}
 
+    kinds = [getattr(b, "type", "?") for b in resp.content]
+    usage = getattr(resp, "usage", None)
+    print(
+        f"  응답 수신: stop_reason={resp.stop_reason} blocks={kinds} "
+        f"out_tokens={getattr(usage, 'output_tokens', '?')}",
+        flush=True,
+    )
     for block in resp.content:
         if getattr(block, "type", None) == "tool_use":
-            return _to_analyses(block.input.get("analyses", []))
-    print("경고: LLM 응답에 tool_use 블록이 없습니다.")
+            items = block.input.get("analyses", [])
+            out = _to_analyses(items)
+            if not out:
+                print(f"경고: tool_use 는 왔으나 분석 항목이 비어 있습니다 (items={len(items)}).", flush=True)
+            return out
+    print(
+        f"경고: LLM 응답에 tool_use 블록이 없습니다 "
+        f"(stop_reason={resp.stop_reason}). max_tokens 부족일 수 있습니다.",
+        flush=True,
+    )
     return {}
 
 

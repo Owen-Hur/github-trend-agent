@@ -37,7 +37,7 @@ jobs:
           # 브리핑 언어. 저장소 Variables 에 BRIEFING_LANG 을 두면 바뀐다 (기본: 한국어)
           BRIEFING_LANG: ${{ vars.BRIEFING_LANG }}
         # Slack 발송과 동시에 briefings/ 에 아카이브를 남긴다(검색용, 비용 없음).
-        run: python -m src.main --deliver slack,file
+        run: python -u -m src.main --deliver slack,file
 
       - name: 소개 이력·아카이브 커밋
         run: |
