@@ -2,9 +2,10 @@ name: GitHub 트렌드 브리핑
 
 on:
   schedule:
-    # 매일 00:00 UTC = 09:00 KST
+    # 화·금 00:00 UTC = 09:00 KST
+    # 분야별 트랙은 config.TOPIC_WEEKDAYS 에 따라 금요일 실행분에만 붙는다.
     # Actions 스케줄러는 정각에 요청이 몰려 수 분~수십 분 지연될 수 있다(정상).
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * 2,5'
   workflow_dispatch: {}
 
 permissions:
