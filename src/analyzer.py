@@ -6,6 +6,8 @@
 
 from __future__ import annotations
 
+import time
+
 from . import config, i18n
 from .models import DOMAINS, Analysis, Repo
 
@@ -60,6 +62,16 @@ ANALYSIS_TOOL = {
 }
 
 
+def _causes(exc: BaseException, limit: int = 5) -> str:
+    """예외 체인을 펼친다. 'Connection error.' 한 줄로는 원인을 알 수 없다."""
+    parts, cur, seen = [], exc, set()
+    while cur is not None and len(parts) < limit and id(cur) not in seen:
+        seen.add(id(cur))
+        parts.append(f"{type(cur).__name__}: {cur}")
+        cur = cur.__cause__ or cur.__context__
+    return " <- ".join(parts)
+
+
 def analyze(repos: list[Repo], api_key: str) -> dict[str, Analysis]:
     """저장소 전체를 한 번의 호출로 배치 처리한다.
 
@@ -78,21 +90,30 @@ def analyze(repos: list[Repo], api_key: str) -> dict[str, Analysis]:
     blocks = "\n\n---\n\n".join(r.context_text() for r in repos)
     prompt = f"다음 {len(repos)}개 저장소를 분석하라.\n\n{blocks}"
 
-    try:
-        # CI 러너에서 간헐적 Connection error 가 관측됐다. 기본 재시도 2회로는
-        # 부족해 늘리고, 타임아웃도 넉넉히 준다.
-        client = anthropic.Anthropic(api_key=api_key, max_retries=5, timeout=180.0)
-        resp = client.messages.create(
-            model=config.MODEL,
-            max_tokens=config.MAX_TOKENS,
-            output_config={"effort": config.EFFORT},
-            system=SYSTEM,
-            tools=[ANALYSIS_TOOL],
-            tool_choice={"type": "tool", "name": "submit_analysis"},
-            messages=[{"role": "user", "content": prompt}],
-        )
-    except Exception as e:  # 네트워크·인증·한도 무엇이든 전체 실행은 계속한다
-        print(f"경고: LLM 호출 실패 ({e}). 원본 description으로 대체합니다.")
+    # CI 러너에서 Connection error 가 반복 관측됐다. SDK 내부 재시도만으로는
+    # 부족해 바깥에서도 간격을 두고 재시도하고, 실패 시 예외 체인을 남긴다.
+    client = anthropic.Anthropic(api_key=api_key, max_retries=5, timeout=180.0)
+    resp = None
+    for attempt in range(config.LLM_ATTEMPTS):
+        try:
+            resp = client.messages.create(
+                model=config.MODEL,
+                max_tokens=config.MAX_TOKENS,
+                output_config={"effort": config.EFFORT},
+                system=SYSTEM,
+                tools=[ANALYSIS_TOOL],
+                tool_choice={"type": "tool", "name": "submit_analysis"},
+                messages=[{"role": "user", "content": prompt}],
+            )
+            break
+        except Exception as e:  # 네트워크·인증·한도 무엇이든 전체 실행은 계속한다
+            print(f"  LLM 호출 실패 ({attempt + 1}/{config.LLM_ATTEMPTS}): {_causes(e)}")
+            if attempt < config.LLM_ATTEMPTS - 1:
+                delay = config.LLM_RETRY_BASE_SECONDS * (attempt + 1)
+                print(f"  {delay}초 후 재시도합니다...")
+                time.sleep(delay)
+    if resp is None:
+        print("경고: LLM 호출이 모두 실패했습니다. 원본 description으로 대체합니다.")
         return {}
 
     for block in resp.content:

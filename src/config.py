@@ -68,6 +68,10 @@ MODEL = "claude-opus-5"
 EFFORT = "medium"
 MAX_TOKENS = 16000
 
+# SDK 내부 재시도 위에 두는 바깥 재시도. CI 러너의 연결 실패 대응.
+LLM_ATTEMPTS = 3
+LLM_RETRY_BASE_SECONDS = 10
+
 WEBHOOK_RE = re.compile(
     r"^https://hooks\.slack\.com/services/T[A-Z0-9]+/B[A-Z0-9]+/[A-Za-z0-9]+$"
 )
