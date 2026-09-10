@@ -73,31 +73,13 @@ def _causes(exc: BaseException, limit: int = 5) -> str:
     return " <- ".join(parts)
 
 
-def analyze(repos: list[Repo], api_key: str) -> dict[str, Analysis]:
-    """저장소 전체를 한 번의 호출로 배치 처리한다.
-
-    개별 호출보다 비용·지연이 낮고 저장소 간 서술 톤이 일관된다.
-    실패 시 빈 dict을 돌려주면 호출자가 fallback으로 채운다.
-    """
-    if not repos:
-        return {}
-
-    try:
-        import anthropic
-    except ImportError:
-        print("경고: anthropic 패키지가 없습니다. 원본 description으로 대체합니다.")
-        return {}
-
+def _call(client, repos: list[Repo]):
+    """단일 배치 호출. 실패 시 None."""
     blocks = "\n\n---\n\n".join(r.context_text() for r in repos)
     prompt = f"다음 {len(repos)}개 저장소를 분석하라.\n\n{blocks}"
-
-    # CI 러너에서 Connection error 가 반복 관측됐다. SDK 내부 재시도만으로는
-    # 부족해 바깥에서도 간격을 두고 재시도하고, 실패 시 예외 체인을 남긴다.
-    client = anthropic.Anthropic(api_key=api_key, max_retries=5, timeout=180.0)
-    resp = None
     for attempt in range(config.LLM_ATTEMPTS):
         try:
-            resp = client.messages.create(
+            return client.messages.create(
                 model=config.MODEL,
                 max_tokens=config.MAX_TOKENS,
                 output_config={"effort": config.EFFORT},
@@ -106,24 +88,39 @@ def analyze(repos: list[Repo], api_key: str) -> dict[str, Analysis]:
                 tool_choice={"type": "tool", "name": "submit_analysis"},
                 messages=[{"role": "user", "content": prompt}],
             )
-            break
         except Exception as e:  # 네트워크·인증·한도 무엇이든 전체 실행은 계속한다
             print(f"  LLM 호출 실패 ({attempt + 1}/{config.LLM_ATTEMPTS}): {_causes(e)}", flush=True)
             if attempt < config.LLM_ATTEMPTS - 1:
                 delay = config.LLM_RETRY_BASE_SECONDS * (attempt + 1)
                 print(f"  {delay}초 후 재시도합니다...", flush=True)
                 time.sleep(delay)
+    return None
+
+
+def _analyze_batch(client, repos: list[Repo]) -> dict[str, Analysis]:
+    """거부되면 배치를 반으로 갈라 재시도한다.
+
+    저장소 한 건의 README 가 안전 분류기를 건드리면 배치 전체가
+    stop_reason=refusal 로 돌아온다. 쪼개면 문제 건만 떨어뜨리고
+    나머지는 살릴 수 있다.
+    """
+    if not repos:
+        return {}
+    resp = _call(client, repos)
     if resp is None:
-        print("경고: LLM 호출이 모두 실패했습니다. 원본 description으로 대체합니다.", flush=True)
         return {}
 
-    kinds = [getattr(b, "type", "?") for b in resp.content]
-    usage = getattr(resp, "usage", None)
-    print(
-        f"  응답 수신: stop_reason={resp.stop_reason} blocks={kinds} "
-        f"out_tokens={getattr(usage, 'output_tokens', '?')}",
-        flush=True,
-    )
+    if resp.stop_reason == "refusal":
+        cat = getattr(getattr(resp, "stop_details", None), "category", None)
+        if len(repos) == 1:
+            print(f"  거부됨: {repos[0].full_name} (category={cat}) — 원본 설명으로 대체", flush=True)
+            return {}
+        mid = len(repos) // 2
+        print(f"  거부됨 (category={cat}) — {len(repos)}건을 {mid}/{len(repos) - mid} 로 나눠 재시도", flush=True)
+        out = _analyze_batch(client, repos[:mid])
+        out.update(_analyze_batch(client, repos[mid:]))
+        return out
+
     for block in resp.content:
         if getattr(block, "type", None) == "tool_use":
             items = block.input.get("analyses", [])
@@ -132,11 +129,33 @@ def analyze(repos: list[Repo], api_key: str) -> dict[str, Analysis]:
                 print(f"경고: tool_use 는 왔으나 분석 항목이 비어 있습니다 (items={len(items)}).", flush=True)
             return out
     print(
-        f"경고: LLM 응답에 tool_use 블록이 없습니다 "
-        f"(stop_reason={resp.stop_reason}). max_tokens 부족일 수 있습니다.",
+        f"경고: LLM 응답에 tool_use 블록이 없습니다 (stop_reason={resp.stop_reason}). "
+        "max_tokens 부족일 수 있습니다.",
         flush=True,
     )
     return {}
+
+
+def analyze(repos: list[Repo], api_key: str) -> dict[str, Analysis]:
+    """저장소 전체를 배치로 처리한다.
+
+    개별 호출보다 비용·지연이 낮고 저장소 간 서술 톤이 일관된다.
+    실패 시 빈 dict을 돌려주면 호출자가 fallback으로 채운다.
+    """
+    if not repos:
+        return {}
+    try:
+        import anthropic
+    except ImportError:
+        print("경고: anthropic 패키지가 없습니다. 원본 description으로 대체합니다.", flush=True)
+        return {}
+
+    client = anthropic.Anthropic(api_key=api_key, max_retries=5, timeout=180.0)
+    out = _analyze_batch(client, repos)
+    if len(out) < len(repos):
+        missed = [r.full_name for r in repos if r.full_name not in out]
+        print(f"  분석 누락 {len(missed)}건: {', '.join(missed)}", flush=True)
+    return out
 
 
 def _to_analyses(items: list[dict]) -> dict[str, Analysis]:
