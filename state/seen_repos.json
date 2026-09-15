@@ -19,6 +19,11 @@
     "stars": 152,
     "track": "topic:Quant"
   },
+  "Chuloo/mural": {
+    "first_seen": "2026-09-15T02:07:49.230430+00:00",
+    "stars": 815,
+    "track": "fresh"
+  },
   "CopilotKit/OpenBot": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
     "stars": 4524,
@@ -129,6 +134,11 @@
     "stars": 780,
     "track": "fresh"
   },
+  "angusdevgo/IDM_Pro_Tool": {
+    "first_seen": "2026-09-15T02:07:49.230430+00:00",
+    "stars": 697,
+    "track": "fresh"
+  },
   "anthropics/commerce-agents": {
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
     "stars": 2702,
@@ -214,6 +224,11 @@
     "stars": 826,
     "track": "fresh"
   },
+  "kruzovic7/ai-data-extractor": {
+    "first_seen": "2026-09-15T02:07:49.230430+00:00",
+    "stars": 812,
+    "track": "fresh"
+  },
   "kyky2347/ALTA": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
     "stars": 242,
@@ -274,6 +289,11 @@
     "stars": 276,
     "track": "topic:Finance"
   },
+  "sumimakito/Mac-Duo": {
+    "first_seen": "2026-09-15T02:07:49.230430+00:00",
+    "stars": 873,
+    "track": "fresh"
+  },
   "vinzdg/codenotch": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
     "stars": 1192,
@@ -293,6 +313,11 @@
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
     "stars": 3546,
     "track": "topic:Agent"
+  },
+  "yifanzhang-pro/recurrent-looped-tranformer": {
+    "first_seen": "2026-09-15T02:07:49.230430+00:00",
+    "stars": 750,
+    "track": "fresh"
   },
   "yjh051108/dsh-routing-suite": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
