@@ -89,6 +89,11 @@
     "stars": 2529,
     "track": "topic:Agent"
   },
+  "NandhaKishorM/laya": {
+    "first_seen": "2026-09-22T02:05:52.903669+00:00",
+    "stars": 10736,
+    "track": "breakout"
+  },
   "Oliveluo666/post-investment-platform": {
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
     "stars": 103,
@@ -200,9 +205,9 @@
     "track": "breakout"
   },
   "browser-use/jev-ultrafast": {
-    "first_seen": "2026-09-18T01:50:25.354042+00:00",
-    "stars": 2271,
-    "track": "fresh"
+    "first_seen": "2026-09-22T02:05:52.903669+00:00",
+    "stars": 15934,
+    "track": "breakout"
   },
   "casatrickdev/robinhood-trading-tools": {
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
@@ -228,6 +233,11 @@
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
     "stars": 902,
     "track": "fresh"
+  },
+  "eternity4719/HowToLiveBetter": {
+    "first_seen": "2026-09-22T02:05:52.903669+00:00",
+    "stars": 11271,
+    "track": "breakout"
   },
   "fidetolabs/qanat": {
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
@@ -304,6 +314,11 @@
     "stars": 69,
     "track": "topic:Quant"
   },
+  "mizorewww/laya-mlx": {
+    "first_seen": "2026-09-22T02:05:52.903669+00:00",
+    "stars": 3964,
+    "track": "fresh"
+  },
   "neilveriemusm/Trpjan-solana-trading-toolkit": {
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
     "stars": 193,
@@ -329,6 +344,11 @@
     "stars": 5565,
     "track": "breakout"
   },
+  "robbietilton/Compositor": {
+    "first_seen": "2026-09-22T02:05:52.903669+00:00",
+    "stars": 4422,
+    "track": "fresh"
+  },
   "s1dashu/ip-as-logo-skill": {
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
     "stars": 5120,
@@ -352,6 +372,11 @@
   "sumimakito/Mac-Duo": {
     "first_seen": "2026-09-15T02:07:49.230430+00:00",
     "stars": 873,
+    "track": "fresh"
+  },
+  "tamaratran/fast-jev-compaction": {
+    "first_seen": "2026-09-22T02:05:52.903669+00:00",
+    "stars": 5996,
     "track": "fresh"
   },
   "totec448-spec/chat-on-steroids": {
@@ -403,6 +428,11 @@
     "first_seen": "2026-09-18T01:50:25.354042+00:00",
     "stars": 53,
     "track": "topic:Quant"
+  },
+  "zai-org/ZCode": {
+    "first_seen": "2026-09-22T02:05:52.903669+00:00",
+    "stars": 5707,
+    "track": "fresh"
   },
   "zhu1090093659/dsh-trading": {
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
