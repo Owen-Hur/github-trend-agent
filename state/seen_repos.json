@@ -84,6 +84,11 @@
     "stars": 5513,
     "track": "breakout"
   },
+  "NVlabs/SoL-Pi": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 3043,
+    "track": "topic:Agent"
+  },
   "Nanako0129/sepia": {
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
     "stars": 2529,
@@ -98,6 +103,11 @@
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
     "stars": 103,
     "track": "topic:Finance"
+  },
+  "Player-YN/BrowserKitten": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 2857,
+    "track": "topic:Agent"
   },
   "Player-YN/PawWork_ZhuaZhua": {
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
@@ -214,6 +224,16 @@
     "stars": 157,
     "track": "topic:Trading"
   },
+  "caxete/crypto-tax-calculator": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 378,
+    "track": "topic:Trading"
+  },
+  "coolbbcamp/Pons-v2-Multi-Wallet-Volume-Bot": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 236,
+    "track": "topic:Trading"
+  },
   "danielblnc/DLSS-NR-on-AMD": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
     "stars": 950,
@@ -232,6 +252,11 @@
   "donvito/codex-astra-luna-orchestrator": {
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
     "stars": 902,
+    "track": "fresh"
+  },
+  "driceroland/Search": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 1258,
     "track": "fresh"
   },
   "eternity4719/HowToLiveBetter": {
@@ -279,10 +304,25 @@
     "stars": 899,
     "track": "fresh"
   },
+  "jaredpalmer/kev": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 6764,
+    "track": "breakout"
+  },
   "jarrodwatts/jev-trader": {
     "first_seen": "2026-09-18T01:50:25.354042+00:00",
     "stars": 526,
     "track": "topic:Trading"
+  },
+  "jeokeo011222/quantbot": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 65,
+    "track": "topic:Quant"
+  },
+  "jev-chat/jev-chat-jarvis": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 6119,
+    "track": "fresh"
   },
   "kajisho5/ffmpeg-skill": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
@@ -314,15 +354,35 @@
     "stars": 69,
     "track": "topic:Quant"
   },
+  "mirkovicdev/HFTENGINE": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 254,
+    "track": "topic:Trading"
+  },
+  "mizorewww/laya-coreml": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 1440,
+    "track": "fresh"
+  },
   "mizorewww/laya-mlx": {
     "first_seen": "2026-09-22T02:05:52.903669+00:00",
     "stars": 3964,
     "track": "fresh"
   },
+  "murattahtaci/turkish-bank-logos-svg": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 65,
+    "track": "topic:Finance"
+  },
   "neilveriemusm/Trpjan-solana-trading-toolkit": {
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
     "stars": 193,
     "track": "topic:Trading"
+  },
+  "newliver666/apk-reverse": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 1418,
+    "track": "fresh"
   },
   "nftechie/stonkfly": {
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
@@ -339,10 +399,20 @@
     "stars": 1175,
     "track": "fresh"
   },
+  "quantskills/QuantStudio": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 61,
+    "track": "topic:Quant"
+  },
   "rakanki911/DLSS5-Swapper": {
     "first_seen": "2026-09-18T01:50:25.354042+00:00",
     "stars": 5565,
     "track": "breakout"
+  },
+  "residual-lab/alpha-harness": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 72,
+    "track": "topic:Quant"
   },
   "robbietilton/Compositor": {
     "first_seen": "2026-09-22T02:05:52.903669+00:00",
@@ -364,6 +434,16 @@
     "stars": 1312,
     "track": "fresh"
   },
+  "shadcn-ui/lint": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 2757,
+    "track": "topic:Agent"
+  },
+  "simonro/edge-scanner": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 86,
+    "track": "topic:Finance"
+  },
   "soul-99/SU_IMD": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
     "stars": 276,
@@ -375,14 +455,19 @@
     "track": "fresh"
   },
   "tamaratran/fast-jev-compaction": {
-    "first_seen": "2026-09-22T02:05:52.903669+00:00",
-    "stars": 5996,
-    "track": "fresh"
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 6733,
+    "track": "breakout"
   },
   "totec448-spec/chat-on-steroids": {
     "first_seen": "2026-09-18T01:50:25.354042+00:00",
     "stars": 3150,
     "track": "topic:Agent"
+  },
+  "unreallabsai/unreal-agent": {
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 1881,
+    "track": "fresh"
   },
   "vinzdg/codenotch": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
@@ -430,9 +515,9 @@
     "track": "topic:Quant"
   },
   "zai-org/ZCode": {
-    "first_seen": "2026-09-22T02:05:52.903669+00:00",
-    "stars": 5707,
-    "track": "fresh"
+    "first_seen": "2026-09-25T02:09:38.286206+00:00",
+    "stars": 6717,
+    "track": "breakout"
   },
   "zhu1090093659/dsh-trading": {
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
