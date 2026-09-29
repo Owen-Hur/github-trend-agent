@@ -29,6 +29,11 @@
     "stars": 815,
     "track": "fresh"
   },
+  "Contrastive-LM/CLM": {
+    "first_seen": "2026-09-29T02:58:54.871623+00:00",
+    "stars": 2302,
+    "track": "fresh"
+  },
   "CopilotKit/OpenBot": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
     "stars": 4524,
@@ -50,9 +55,9 @@
     "track": "topic:Agent"
   },
   "Human-Agent-Society/reef": {
-    "first_seen": "2026-09-18T01:50:25.354042+00:00",
-    "stars": 3353,
-    "track": "topic:Agent"
+    "first_seen": "2026-09-29T02:58:54.871623+00:00",
+    "stars": 6937,
+    "track": "breakout"
   },
   "Jarvis322/macos-sysdata": {
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
@@ -259,6 +264,11 @@
     "stars": 1258,
     "track": "fresh"
   },
+  "dzhng/jevgrep": {
+    "first_seen": "2026-09-29T02:58:54.871623+00:00",
+    "stars": 1470,
+    "track": "fresh"
+  },
   "eternity4719/HowToLiveBetter": {
     "first_seen": "2026-09-22T02:05:52.903669+00:00",
     "stars": 11271,
@@ -320,9 +330,9 @@
     "track": "topic:Quant"
   },
   "jev-chat/jev-chat-jarvis": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 6119,
-    "track": "fresh"
+    "first_seen": "2026-09-29T02:58:54.871623+00:00",
+    "stars": 6955,
+    "track": "breakout"
   },
   "kajisho5/ffmpeg-skill": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
@@ -354,6 +364,11 @@
     "stars": 69,
     "track": "topic:Quant"
   },
+  "mexicat/pdoom-video": {
+    "first_seen": "2026-09-29T02:58:54.871623+00:00",
+    "stars": 1789,
+    "track": "fresh"
+  },
   "mirkovicdev/HFTENGINE": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
     "stars": 254,
@@ -365,9 +380,9 @@
     "track": "fresh"
   },
   "mizorewww/laya-mlx": {
-    "first_seen": "2026-09-22T02:05:52.903669+00:00",
-    "stars": 3964,
-    "track": "fresh"
+    "first_seen": "2026-09-29T02:58:54.871623+00:00",
+    "stars": 6583,
+    "track": "breakout"
   },
   "murattahtaci/turkish-bank-logos-svg": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
@@ -459,6 +474,11 @@
     "stars": 6733,
     "track": "breakout"
   },
+  "tobi/disktree": {
+    "first_seen": "2026-09-29T02:58:54.871623+00:00",
+    "stars": 1829,
+    "track": "fresh"
+  },
   "totec448-spec/chat-on-steroids": {
     "first_seen": "2026-09-18T01:50:25.354042+00:00",
     "stars": 3150,
@@ -488,6 +508,11 @@
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
     "stars": 3546,
     "track": "topic:Agent"
+  },
+  "yetone/magpie": {
+    "first_seen": "2026-09-29T02:58:54.871623+00:00",
+    "stars": 1646,
+    "track": "fresh"
   },
   "yifanzhang-pro/recurrent-looped-tranformer": {
     "first_seen": "2026-09-15T02:07:49.230430+00:00",
