@@ -39,6 +39,11 @@
     "stars": 4524,
     "track": "topic:Agent"
   },
+  "CopilotKit/openmuse": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 3575,
+    "track": "topic:Agent"
+  },
   "Edge0-AI/Edge0": {
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
     "stars": 787,
@@ -74,10 +79,25 @@
     "stars": 745,
     "track": "fresh"
   },
+  "KKKKhazix/AIHOT": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 4692,
+    "track": "fresh"
+  },
   "Loopera-ai/loopera": {
     "first_seen": "2026-09-18T01:50:25.354042+00:00",
     "stars": 205,
     "track": "topic:Quant"
+  },
+  "Louis-CFM/coucou": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 2503,
+    "track": "fresh"
+  },
+  "Mak5er/AirCard": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 5573,
+    "track": "breakout"
   },
   "MariusOTB/OpenTrade-Agent": {
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
@@ -103,6 +123,11 @@
     "first_seen": "2026-09-22T02:05:52.903669+00:00",
     "stars": 10736,
     "track": "breakout"
+  },
+  "NobodySniper/NobodyTdxTQ": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 67,
+    "track": "topic:Finance"
   },
   "Oliveluo666/post-investment-platform": {
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
@@ -137,6 +162,16 @@
   "Ryan-yourhero/ant-kol-quant-analysis": {
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
     "stars": 106,
+    "track": "topic:Quant"
+  },
+  "Shelpid/SETS": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 216,
+    "track": "topic:Trading"
+  },
+  "Simreal-AI/Xitadel-QuantBench": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 101,
     "track": "topic:Quant"
   },
   "Superior-Trade/trading-terminal": {
@@ -219,6 +254,11 @@
     "stars": 15006,
     "track": "breakout"
   },
+  "brainbrick-trades/The-Quant-Trading-Vault": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 333,
+    "track": "topic:Trading"
+  },
   "browser-use/jev-ultrafast": {
     "first_seen": "2026-09-22T02:05:52.903669+00:00",
     "stars": 15934,
@@ -233,6 +273,16 @@
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
     "stars": 378,
     "track": "topic:Trading"
+  },
+  "cdyforever/how-to-live-better": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 6083,
+    "track": "breakout"
+  },
+  "ceyyy427/financial-research-optimizer": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 70,
+    "track": "topic:Finance"
   },
   "coolbbcamp/Pons-v2-Multi-Wallet-Volume-Bot": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
@@ -273,6 +323,11 @@
     "first_seen": "2026-09-22T02:05:52.903669+00:00",
     "stars": 11271,
     "track": "breakout"
+  },
+  "feder-cr/dots": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 2389,
+    "track": "fresh"
   },
   "fidetolabs/qanat": {
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
@@ -334,6 +389,16 @@
     "stars": 6955,
     "track": "breakout"
   },
+  "jtydhr88/screenwriting-skills": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 1522,
+    "track": "topic:Agent"
+  },
+  "kaankiziltug/logo-design-skill": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 1361,
+    "track": "fresh"
+  },
   "kajisho5/ffmpeg-skill": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
     "stars": 826,
@@ -363,6 +428,11 @@
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
     "stars": 69,
     "track": "topic:Quant"
+  },
+  "mcncarl/jianying-headless": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 2950,
+    "track": "topic:Agent"
   },
   "mexicat/pdoom-video": {
     "first_seen": "2026-09-29T02:58:54.871623+00:00",
@@ -424,15 +494,20 @@
     "stars": 5565,
     "track": "breakout"
   },
+  "rehan-remade/universal-modder": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 1599,
+    "track": "fresh"
+  },
   "residual-lab/alpha-harness": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
     "stars": 72,
     "track": "topic:Quant"
   },
   "robbietilton/Compositor": {
-    "first_seen": "2026-09-22T02:05:52.903669+00:00",
-    "stars": 4422,
-    "track": "fresh"
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 6792,
+    "track": "breakout"
   },
   "s1dashu/ip-as-logo-skill": {
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
@@ -458,6 +533,16 @@
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
     "stars": 86,
     "track": "topic:Finance"
+  },
+  "siqiwang0712-commits/financial-risk-agent": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 78,
+    "track": "topic:Finance"
+  },
+  "sopersone/cabbage-trading-machine": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 262,
+    "track": "topic:Trading"
   },
   "soul-99/SU_IMD": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
@@ -498,6 +583,11 @@
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
     "stars": 3599,
     "track": "topic:Agent"
+  },
+  "wildminder/awesome-qwen-image": {
+    "first_seen": "2026-10-02T02:48:50.446835+00:00",
+    "stars": 112,
+    "track": "topic:Quant"
   },
   "yang0/handraw-style": {
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
