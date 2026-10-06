@@ -80,9 +80,9 @@
     "track": "fresh"
   },
   "KKKKhazix/AIHOT": {
-    "first_seen": "2026-10-02T02:48:50.446835+00:00",
-    "stars": 4692,
-    "track": "fresh"
+    "first_seen": "2026-10-06T03:32:47.848490+00:00",
+    "stars": 6024,
+    "track": "breakout"
   },
   "Loopera-ai/loopera": {
     "first_seen": "2026-09-18T01:50:25.354042+00:00",
@@ -124,6 +124,11 @@
     "stars": 10736,
     "track": "breakout"
   },
+  "Niko1221/Strata": {
+    "first_seen": "2026-10-06T03:32:47.848490+00:00",
+    "stars": 14141,
+    "track": "breakout"
+  },
   "NobodySniper/NobodyTdxTQ": {
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
     "stars": 67,
@@ -143,6 +148,11 @@
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
     "stars": 2546,
     "track": "topic:Agent"
+  },
+  "QingYunA/answer-me-with-html": {
+    "first_seen": "2026-10-06T03:32:47.848490+00:00",
+    "stars": 1508,
+    "track": "fresh"
   },
   "QiushenZou/cn-investment-banking-skills": {
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
@@ -324,6 +334,11 @@
     "stars": 11271,
     "track": "breakout"
   },
+  "facebookincubator/muse-gadget-sdk": {
+    "first_seen": "2026-10-06T03:32:47.848490+00:00",
+    "stars": 1448,
+    "track": "fresh"
+  },
   "feder-cr/dots": {
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
     "stars": 2389,
@@ -404,6 +419,11 @@
     "stars": 826,
     "track": "fresh"
   },
+  "kargulstudio/sales-crm": {
+    "first_seen": "2026-10-06T03:32:47.848490+00:00",
+    "stars": 1475,
+    "track": "fresh"
+  },
   "kruzovic7/ai-data-extractor": {
     "first_seen": "2026-09-15T02:07:49.230430+00:00",
     "stars": 812,
@@ -458,6 +478,11 @@
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
     "stars": 65,
     "track": "topic:Finance"
+  },
+  "nanaism/yomiyasu": {
+    "first_seen": "2026-10-06T03:32:47.848490+00:00",
+    "stars": 1528,
+    "track": "fresh"
   },
   "neilveriemusm/Trpjan-solana-trading-toolkit": {
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
@@ -549,6 +574,11 @@
     "stars": 276,
     "track": "topic:Finance"
   },
+  "storytold/photocraft": {
+    "first_seen": "2026-10-06T03:32:47.848490+00:00",
+    "stars": 2184,
+    "track": "fresh"
+  },
   "sumimakito/Mac-Duo": {
     "first_seen": "2026-09-15T02:07:49.230430+00:00",
     "stars": 873,
@@ -600,9 +630,9 @@
     "track": "topic:Agent"
   },
   "yetone/magpie": {
-    "first_seen": "2026-09-29T02:58:54.871623+00:00",
-    "stars": 1646,
-    "track": "fresh"
+    "first_seen": "2026-10-06T03:32:47.848490+00:00",
+    "stars": 5191,
+    "track": "breakout"
   },
   "yifanzhang-pro/recurrent-looped-tranformer": {
     "first_seen": "2026-09-15T02:07:49.230430+00:00",
