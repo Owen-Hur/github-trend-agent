@@ -19,6 +19,11 @@
     "stars": 3484,
     "track": "topic:Agent"
   },
+  "BootLoops-ai/bootloops": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 318,
+    "track": "topic:Quant"
+  },
   "CamusGIT/EvoQuant": {
     "first_seen": "2026-09-09T11:18:47.209557+00:00",
     "stars": 152,
@@ -64,6 +69,11 @@
     "stars": 6937,
     "track": "breakout"
   },
+  "Jakeschincariol/replica-skill": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 1115,
+    "track": "fresh"
+  },
   "Jarvis322/macos-sysdata": {
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
     "stars": 623,
@@ -84,10 +94,20 @@
     "stars": 6024,
     "track": "breakout"
   },
+  "Local-Settle/local-settle-frontend": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 132,
+    "track": "topic:Finance"
+  },
   "Loopera-ai/loopera": {
     "first_seen": "2026-09-18T01:50:25.354042+00:00",
     "stars": 205,
     "track": "topic:Quant"
+  },
+  "LosaLosSantos/aurelio-finance": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 700,
+    "track": "topic:Finance"
   },
   "Louis-CFM/coucou": {
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
@@ -234,6 +254,16 @@
     "stars": 780,
     "track": "fresh"
   },
+  "alchaincyf/huashu-art-motion": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 2524,
+    "track": "fresh"
+  },
+  "alejandrobujan/tendedero": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 1045,
+    "track": "fresh"
+  },
   "angusdevgo/IDM_Pro_Tool": {
     "first_seen": "2026-09-15T02:07:49.230430+00:00",
     "stars": 697,
@@ -264,6 +294,11 @@
     "stars": 15006,
     "track": "breakout"
   },
+  "beamivalice/sushi": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 181,
+    "track": "topic:Quant"
+  },
   "brainbrick-trades/The-Quant-Trading-Vault": {
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
     "stars": 333,
@@ -292,6 +327,11 @@
   "ceyyy427/financial-research-optimizer": {
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
     "stars": 70,
+    "track": "topic:Finance"
+  },
+  "ceyyy427/finathink": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 133,
     "track": "topic:Finance"
   },
   "coolbbcamp/Pons-v2-Multi-Wallet-Volume-Bot": {
@@ -344,6 +384,16 @@
     "stars": 2389,
     "track": "fresh"
   },
+  "feder-cr/invisible_playwright_mcp": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 2685,
+    "track": "topic:Agent"
+  },
+  "feitangyuan/onetake": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 1967,
+    "track": "topic:Agent"
+  },
   "fidetolabs/qanat": {
     "first_seen": "2026-09-10T17:11:44.168892+00:00",
     "stars": 116,
@@ -383,6 +433,11 @@
     "first_seen": "2026-09-11T01:44:07.436379+00:00",
     "stars": 899,
     "track": "fresh"
+  },
+  "imikerussell/beebots": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 261,
+    "track": "topic:Trading"
   },
   "jaredpalmer/kev": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
@@ -474,10 +529,20 @@
     "stars": 6583,
     "track": "breakout"
   },
+  "mogons/noraz-agent": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 169,
+    "track": "topic:Trading"
+  },
   "murattahtaci/turkish-bank-logos-svg": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
     "stars": 65,
     "track": "topic:Finance"
+  },
+  "mw00/project-maya": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 143,
+    "track": "topic:Quant"
   },
   "nanaism/yomiyasu": {
     "first_seen": "2026-10-06T03:32:47.848490+00:00",
@@ -504,10 +569,25 @@
     "stars": 171,
     "track": "topic:Finance"
   },
+  "nullmoth/nvidia-macos-driver": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 1208,
+    "track": "fresh"
+  },
+  "omnirush-ai/omnirush-gui": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 2851,
+    "track": "topic:Agent"
+  },
   "openai/NavierStokesAndEuler": {
     "first_seen": "2026-09-09T07:29:01.991650+00:00",
     "stars": 1175,
     "track": "fresh"
+  },
+  "openai/math": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 12257,
+    "track": "breakout"
   },
   "quantskills/QuantStudio": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
@@ -554,6 +634,11 @@
     "stars": 2757,
     "track": "topic:Agent"
   },
+  "shihabal3amri/DiPlay": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 7516,
+    "track": "breakout"
+  },
   "simonro/edge-scanner": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
     "stars": 86,
@@ -575,14 +660,19 @@
     "track": "topic:Finance"
   },
   "storytold/photocraft": {
-    "first_seen": "2026-10-06T03:32:47.848490+00:00",
-    "stars": 2184,
-    "track": "fresh"
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 27909,
+    "track": "breakout"
   },
   "sumimakito/Mac-Duo": {
     "first_seen": "2026-09-15T02:07:49.230430+00:00",
     "stars": 873,
     "track": "fresh"
+  },
+  "suoha888/Trader-Archives": {
+    "first_seen": "2026-10-09T03:20:56.392656+00:00",
+    "stars": 193,
+    "track": "topic:Trading"
   },
   "tamaratran/fast-jev-compaction": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
