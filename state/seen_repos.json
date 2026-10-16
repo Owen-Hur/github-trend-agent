@@ -4,15 +4,20 @@
     "stars": 3484,
     "track": "topic:Agent"
   },
+  "Arekejoker/qwen21-nsfw-pose-skill": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 2066,
+    "track": "fresh"
+  },
+  "BYTEX-TRADE/bytex": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 208,
+    "track": "topic:Trading"
+  },
   "BootLoops-ai/bootloops": {
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
     "stars": 318,
     "track": "topic:Quant"
-  },
-  "Chuloo/mural": {
-    "first_seen": "2026-09-15T02:07:49.230430+00:00",
-    "stars": 815,
-    "track": "fresh"
   },
   "Contrastive-LM/CLM": {
     "first_seen": "2026-09-29T02:58:54.871623+00:00",
@@ -29,6 +34,16 @@
     "stars": 12322,
     "track": "breakout"
   },
+  "Fei2411/DeepSeek-Bot": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 2040,
+    "track": "topic:Agent"
+  },
+  "HeyPuter/everything": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 1328,
+    "track": "fresh"
+  },
   "Human-Agent-Society/reef": {
     "first_seen": "2026-09-29T02:58:54.871623+00:00",
     "stars": 6937,
@@ -43,6 +58,11 @@
     "first_seen": "2026-10-06T03:32:47.848490+00:00",
     "stars": 6024,
     "track": "breakout"
+  },
+  "Local-Settle/local-settle-backend": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 132,
+    "track": "topic:Finance"
   },
   "Local-Settle/local-settle-frontend": {
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
@@ -89,6 +109,11 @@
     "stars": 67,
     "track": "topic:Finance"
   },
+  "Oldcircle/geo-sleuth": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 2983,
+    "track": "topic:Agent"
+  },
   "Player-YN/BrowserKitten": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
     "stars": 2857,
@@ -108,6 +133,16 @@
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
     "stars": 101,
     "track": "topic:Quant"
+  },
+  "Stellar-Clear/clearledger-contracts": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 131,
+    "track": "topic:Finance"
+  },
+  "Stellar-Kolo/kolo-frontend": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 132,
+    "track": "topic:Finance"
   },
   "Superior-Trade/trading-terminal": {
     "first_seen": "2026-09-18T01:50:25.354042+00:00",
@@ -139,11 +174,6 @@
     "stars": 1045,
     "track": "fresh"
   },
-  "angusdevgo/IDM_Pro_Tool": {
-    "first_seen": "2026-09-15T02:07:49.230430+00:00",
-    "stars": 697,
-    "track": "fresh"
-  },
   "beamivalice/sushi": {
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
     "stars": 181,
@@ -158,6 +188,11 @@
     "first_seen": "2026-09-22T02:05:52.903669+00:00",
     "stars": 15934,
     "track": "breakout"
+  },
+  "carreypro/ict-trading-model": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 288,
+    "track": "topic:Trading"
   },
   "caxete/crypto-tax-calculator": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
@@ -193,6 +228,11 @@
     "first_seen": "2026-09-29T02:58:54.871623+00:00",
     "stars": 1470,
     "track": "fresh"
+  },
+  "edenfunf/reelmimic": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 3331,
+    "track": "topic:Agent"
   },
   "eternity4719/HowToLiveBetter": {
     "first_seen": "2026-09-22T02:05:52.903669+00:00",
@@ -254,6 +294,11 @@
     "stars": 6955,
     "track": "breakout"
   },
+  "jhaizhou-ops/d2r-mobile": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 3172,
+    "track": "fresh"
+  },
   "jtydhr88/screenwriting-skills": {
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
     "stars": 1522,
@@ -269,10 +314,15 @@
     "stars": 1475,
     "track": "fresh"
   },
-  "kruzovic7/ai-data-extractor": {
-    "first_seen": "2026-09-15T02:07:49.230430+00:00",
-    "stars": 812,
+  "liseami/CCBaga": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 2342,
     "track": "fresh"
+  },
+  "longsurf-ai/openchart": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 205,
+    "track": "topic:Trading"
   },
   "mcncarl/jianying-headless": {
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
@@ -339,6 +389,11 @@
     "stars": 2851,
     "track": "topic:Agent"
   },
+  "onehumanbeing/esp32-iphone-agent": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 2495,
+    "track": "fresh"
+  },
   "openai/math": {
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
     "stars": 12257,
@@ -368,6 +423,11 @@
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
     "stars": 6792,
     "track": "breakout"
+  },
+  "sergqwer/strata-nvfp4": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 148,
+    "track": "topic:Quant"
   },
   "shadcn-ui/lint": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
@@ -409,6 +469,11 @@
     "stars": 3926,
     "track": "fresh"
   },
+  "storytold/lightcraft": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 12992,
+    "track": "breakout"
+  },
   "storytold/pdfcraft": {
     "first_seen": "2026-10-13T04:10:46.918495+00:00",
     "stars": 11583,
@@ -420,14 +485,9 @@
     "track": "breakout"
   },
   "storytold/wordcraft": {
-    "first_seen": "2026-10-13T04:10:46.918495+00:00",
-    "stars": 9452,
-    "track": "fresh"
-  },
-  "sumimakito/Mac-Duo": {
-    "first_seen": "2026-09-15T02:07:49.230430+00:00",
-    "stars": 873,
-    "track": "fresh"
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 13221,
+    "track": "breakout"
   },
   "suoha888/Trader-Archives": {
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
@@ -455,9 +515,9 @@
     "track": "fresh"
   },
   "wheresryan22/anatomy": {
-    "first_seen": "2026-10-13T04:10:46.918495+00:00",
-    "stars": 6577,
-    "track": "fresh"
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 12843,
+    "track": "breakout"
   },
   "wildminder/awesome-qwen-image": {
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
@@ -468,11 +528,6 @@
     "first_seen": "2026-10-06T03:32:47.848490+00:00",
     "stars": 5191,
     "track": "breakout"
-  },
-  "yifanzhang-pro/recurrent-looped-tranformer": {
-    "first_seen": "2026-09-15T02:07:49.230430+00:00",
-    "stars": 750,
-    "track": "fresh"
   },
   "youngyangyang04/llm-master": {
     "first_seen": "2026-09-18T01:50:25.354042+00:00",
@@ -493,5 +548,10 @@
     "first_seen": "2026-09-18T01:50:25.354042+00:00",
     "stars": 825,
     "track": "fresh"
+  },
+  "zzhahn/a_stock_level2_data": {
+    "first_seen": "2026-10-16T01:55:16.759404+00:00",
+    "stars": 124,
+    "track": "topic:Quant"
   }
 }
