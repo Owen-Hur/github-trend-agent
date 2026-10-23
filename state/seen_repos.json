@@ -14,6 +14,11 @@
     "stars": 318,
     "track": "topic:Quant"
   },
+  "ChungKit-WAN/Quant-research-lab": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 69,
+    "track": "topic:Quant"
+  },
   "Contrastive-LM/CLM": {
     "first_seen": "2026-09-29T02:58:54.871623+00:00",
     "stars": 2302,
@@ -23,6 +28,11 @@
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
     "stars": 3575,
     "track": "topic:Agent"
+  },
+  "DiracQuantum/dirac_quantum": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 98,
+    "track": "topic:Quant"
   },
   "Droid-Deck/DroidDeck": {
     "first_seen": "2026-10-20T02:21:23.435160+00:00",
@@ -40,9 +50,9 @@
     "track": "topic:Agent"
   },
   "Gathin23/cleanyourtv": {
-    "first_seen": "2026-10-20T02:21:23.435160+00:00",
-    "stars": 5677,
-    "track": "fresh"
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 24351,
+    "track": "breakout"
   },
   "HeyPuter/everything": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
@@ -54,15 +64,35 @@
     "stars": 6937,
     "track": "breakout"
   },
+  "Jakeschincariol/day-trader-skill": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 537,
+    "track": "topic:Trading"
+  },
   "Jakeschincariol/replica-skill": {
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
     "stars": 1115,
     "track": "fresh"
   },
+  "Jakeschincariol/trader-skill": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 385,
+    "track": "topic:Trading"
+  },
   "KKKKhazix/AIHOT": {
     "first_seen": "2026-10-06T03:32:47.848490+00:00",
     "stars": 6024,
     "track": "breakout"
+  },
+  "KnifeLemon/Filee": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 10231,
+    "track": "breakout"
+  },
+  "Leonxlnx/earshot": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 2190,
+    "track": "topic:Agent"
   },
   "Local-Settle/local-settle-backend": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
@@ -93,11 +123,6 @@
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
     "stars": 3043,
     "track": "topic:Agent"
-  },
-  "NandhaKishorM/laya": {
-    "first_seen": "2026-09-22T02:05:52.903669+00:00",
-    "stars": 10736,
-    "track": "breakout"
   },
   "Niko1221/Strata": {
     "first_seen": "2026-10-06T03:32:47.848490+00:00",
@@ -134,6 +159,11 @@
     "stars": 101,
     "track": "topic:Quant"
   },
+  "Stellar-Clear/clearledger": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 131,
+    "track": "topic:Finance"
+  },
   "Stellar-Clear/clearledger-contracts": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
     "stars": 131,
@@ -143,6 +173,16 @@
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
     "stars": 132,
     "track": "topic:Finance"
+  },
+  "Stellar-Pathfinder/stellar-pathfinder": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 130,
+    "track": "topic:Finance"
+  },
+  "academa-labs/manimgx": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 2030,
+    "track": "topic:Agent"
   },
   "ahwootech/BRUTAL": {
     "first_seen": "2026-10-20T02:21:23.435160+00:00",
@@ -168,11 +208,6 @@
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
     "stars": 333,
     "track": "topic:Trading"
-  },
-  "browser-use/jev-ultrafast": {
-    "first_seen": "2026-09-22T02:05:52.903669+00:00",
-    "stars": 15934,
-    "track": "breakout"
   },
   "carreypro/ict-trading-model": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
@@ -209,6 +244,11 @@
     "stars": 236,
     "track": "topic:Trading"
   },
+  "deepseek-ai/DeepInfer": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 19979,
+    "track": "breakout"
+  },
   "driceroland/Search": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
     "stars": 1258,
@@ -223,11 +263,6 @@
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
     "stars": 3331,
     "track": "topic:Agent"
-  },
-  "eternity4719/HowToLiveBetter": {
-    "first_seen": "2026-09-22T02:05:52.903669+00:00",
-    "stars": 11271,
-    "track": "breakout"
   },
   "facebookincubator/muse-gadget-sdk": {
     "first_seen": "2026-10-06T03:32:47.848490+00:00",
@@ -254,10 +289,20 @@
     "stars": 1967,
     "track": "topic:Agent"
   },
+  "fzn0x/idx": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 174,
+    "track": "topic:Finance"
+  },
   "google-research/harness2": {
     "first_seen": "2026-10-20T02:21:23.435160+00:00",
     "stars": 12119,
     "track": "breakout"
+  },
+  "ikow/php2shell-poc": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 1535,
+    "track": "fresh"
   },
   "imikerussell/beebots": {
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
@@ -329,6 +374,11 @@
     "stars": 3647,
     "track": "fresh"
   },
+  "michaelshimeles/terminal-rs": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 282,
+    "track": "topic:Trading"
+  },
   "mirkovicdev/HFTENGINE": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
     "stars": 254,
@@ -389,6 +439,16 @@
     "stars": 12257,
     "track": "breakout"
   },
+  "openfilm/openfilm": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 2130,
+    "track": "topic:Agent"
+  },
+  "pengchujin/aerial-tv": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 3179,
+    "track": "fresh"
+  },
   "quantskills/QuantStudio": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
     "stars": 61,
@@ -423,6 +483,11 @@
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
     "stars": 7516,
     "track": "breakout"
+  },
+  "simbasjungles/free-my-tv": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 3474,
+    "track": "fresh"
   },
   "simonro/edge-scanner": {
     "first_seen": "2026-09-25T02:09:38.286206+00:00",
@@ -489,6 +554,11 @@
     "stars": 6733,
     "track": "breakout"
   },
+  "tek-sys-hub/Rubix-lang": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 1902,
+    "track": "fresh"
+  },
   "tobi/disktree": {
     "first_seen": "2026-09-29T02:58:54.871623+00:00",
     "stars": 1829,
@@ -508,6 +578,11 @@
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
     "stars": 112,
     "track": "topic:Quant"
+  },
+  "xiaoyang111222/cn-math-taxonomy": {
+    "first_seen": "2026-10-23T02:14:53.062239+00:00",
+    "stars": 2212,
+    "track": "fresh"
   },
   "yetone/magpie": {
     "first_seen": "2026-10-06T03:32:47.848490+00:00",
