@@ -79,6 +79,11 @@
     "stars": 385,
     "track": "topic:Trading"
   },
+  "JustAResearcher/gpu-unlock-ada": {
+    "first_seen": "2026-10-27T02:38:35.535520+00:00",
+    "stars": 3886,
+    "track": "fresh"
+  },
   "KKKKhazix/AIHOT": {
     "first_seen": "2026-10-06T03:32:47.848490+00:00",
     "stars": 6024,
@@ -119,11 +124,6 @@
     "stars": 5573,
     "track": "breakout"
   },
-  "NVlabs/SoL-Pi": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 3043,
-    "track": "topic:Agent"
-  },
   "Niko1221/Strata": {
     "first_seen": "2026-10-06T03:32:47.848490+00:00",
     "stars": 14141,
@@ -137,11 +137,6 @@
   "Oldcircle/geo-sleuth": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
     "stars": 2983,
-    "track": "topic:Agent"
-  },
-  "Player-YN/BrowserKitten": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 2857,
     "track": "topic:Agent"
   },
   "QingYunA/answer-me-with-html": {
@@ -179,6 +174,11 @@
     "stars": 130,
     "track": "topic:Finance"
   },
+  "Zagitta/gpu-unlock": {
+    "first_seen": "2026-10-27T02:38:35.535520+00:00",
+    "stars": 9886,
+    "track": "breakout"
+  },
   "academa-labs/manimgx": {
     "first_seen": "2026-10-23T02:14:53.062239+00:00",
     "stars": 2030,
@@ -214,11 +214,6 @@
     "stars": 288,
     "track": "topic:Trading"
   },
-  "caxete/crypto-tax-calculator": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 378,
-    "track": "topic:Trading"
-  },
   "cdyforever/how-to-live-better": {
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
     "stars": 6083,
@@ -239,19 +234,14 @@
     "stars": 1816,
     "track": "fresh"
   },
-  "coolbbcamp/Pons-v2-Multi-Wallet-Volume-Bot": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 236,
-    "track": "topic:Trading"
-  },
   "deepseek-ai/DeepInfer": {
     "first_seen": "2026-10-23T02:14:53.062239+00:00",
     "stars": 19979,
     "track": "breakout"
   },
-  "driceroland/Search": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 1258,
+  "designfuchen/word-atlas": {
+    "first_seen": "2026-10-27T02:38:35.535520+00:00",
+    "stars": 1777,
     "track": "fresh"
   },
   "dzhng/jevgrep": {
@@ -308,16 +298,6 @@
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
     "stars": 261,
     "track": "topic:Trading"
-  },
-  "jaredpalmer/kev": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 6764,
-    "track": "breakout"
-  },
-  "jeokeo011222/quantbot": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 65,
-    "track": "topic:Quant"
   },
   "jev-chat/jev-chat-jarvis": {
     "first_seen": "2026-09-29T02:58:54.871623+00:00",
@@ -379,16 +359,6 @@
     "stars": 282,
     "track": "topic:Trading"
   },
-  "mirkovicdev/HFTENGINE": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 254,
-    "track": "topic:Trading"
-  },
-  "mizorewww/laya-coreml": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 1440,
-    "track": "fresh"
-  },
   "mizorewww/laya-mlx": {
     "first_seen": "2026-09-29T02:58:54.871623+00:00",
     "stars": 6583,
@@ -399,11 +369,6 @@
     "stars": 169,
     "track": "topic:Trading"
   },
-  "murattahtaci/turkish-bank-logos-svg": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 65,
-    "track": "topic:Finance"
-  },
   "mw00/project-maya": {
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
     "stars": 143,
@@ -412,11 +377,6 @@
   "nanaism/yomiyasu": {
     "first_seen": "2026-10-06T03:32:47.848490+00:00",
     "stars": 1528,
-    "track": "fresh"
-  },
-  "newliver666/apk-reverse": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 1418,
     "track": "fresh"
   },
   "nullmoth/nvidia-macos-driver": {
@@ -449,20 +409,15 @@
     "stars": 3179,
     "track": "fresh"
   },
-  "quantskills/QuantStudio": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 61,
-    "track": "topic:Quant"
-  },
-  "rehan-remade/universal-modder": {
-    "first_seen": "2026-10-02T02:48:50.446835+00:00",
-    "stars": 1599,
+  "rddmwmddr/android-ad-cleaner": {
+    "first_seen": "2026-10-27T02:38:35.535520+00:00",
+    "stars": 2044,
     "track": "fresh"
   },
-  "residual-lab/alpha-harness": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 72,
-    "track": "topic:Quant"
+  "rehan-remade/universal-modder": {
+    "first_seen": "2026-10-27T02:38:35.535520+00:00",
+    "stars": 9024,
+    "track": "breakout"
   },
   "robbietilton/Compositor": {
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
@@ -474,11 +429,6 @@
     "stars": 148,
     "track": "topic:Quant"
   },
-  "shadcn-ui/lint": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 2757,
-    "track": "topic:Agent"
-  },
   "shihabal3amri/DiPlay": {
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
     "stars": 7516,
@@ -488,11 +438,6 @@
     "first_seen": "2026-10-23T02:14:53.062239+00:00",
     "stars": 3474,
     "track": "fresh"
-  },
-  "simonro/edge-scanner": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 86,
-    "track": "topic:Finance"
   },
   "siqiwang0712-commits/financial-risk-agent": {
     "first_seen": "2026-10-02T02:48:50.446835+00:00",
@@ -549,9 +494,9 @@
     "stars": 193,
     "track": "topic:Trading"
   },
-  "tamaratran/fast-jev-compaction": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 6733,
+  "tangency-labs/solidcraft": {
+    "first_seen": "2026-10-27T02:38:35.535520+00:00",
+    "stars": 10842,
     "track": "breakout"
   },
   "tek-sys-hub/Rubix-lang": {
@@ -564,9 +509,9 @@
     "stars": 1829,
     "track": "fresh"
   },
-  "unreallabsai/unreal-agent": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 1881,
+  "wesbos/3d-model-anything": {
+    "first_seen": "2026-10-27T02:38:35.535520+00:00",
+    "stars": 2083,
     "track": "fresh"
   },
   "wheresryan22/anatomy": {
@@ -579,6 +524,11 @@
     "stars": 112,
     "track": "topic:Quant"
   },
+  "xevrion/hatchzip": {
+    "first_seen": "2026-10-27T02:38:35.535520+00:00",
+    "stars": 2061,
+    "track": "fresh"
+  },
   "xiaoyang111222/cn-math-taxonomy": {
     "first_seen": "2026-10-23T02:14:53.062239+00:00",
     "stars": 2212,
@@ -587,11 +537,6 @@
   "yetone/magpie": {
     "first_seen": "2026-10-06T03:32:47.848490+00:00",
     "stars": 5191,
-    "track": "breakout"
-  },
-  "zai-org/ZCode": {
-    "first_seen": "2026-09-25T02:09:38.286206+00:00",
-    "stars": 6717,
     "track": "breakout"
   },
   "zzhahn/a_stock_level2_data": {
