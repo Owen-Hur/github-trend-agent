@@ -49,6 +49,11 @@
     "stars": 200,
     "track": "topic:Trading"
   },
+  "FrontierHawkStove/atas-trading-bot": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 301,
+    "track": "topic:Trading"
+  },
   "Gathin23/cleanyourtv": {
     "first_seen": "2026-10-23T02:14:53.062239+00:00",
     "stars": 24351,
@@ -84,10 +89,10 @@
     "stars": 3886,
     "track": "fresh"
   },
-  "KKKKhazix/AIHOT": {
-    "first_seen": "2026-10-06T03:32:47.848490+00:00",
-    "stars": 6024,
-    "track": "breakout"
+  "KKKKhazix/agent-autoloop": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 3336,
+    "track": "fresh"
   },
   "KnifeLemon/Filee": {
     "first_seen": "2026-10-23T02:14:53.062239+00:00",
@@ -114,24 +119,29 @@
     "stars": 700,
     "track": "topic:Finance"
   },
-  "Niko1221/Strata": {
-    "first_seen": "2026-10-06T03:32:47.848490+00:00",
-    "stars": 14141,
-    "track": "breakout"
+  "Ngochiendev/vietqr-core": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 105,
+    "track": "topic:Finance"
   },
   "Oldcircle/geo-sleuth": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
     "stars": 2983,
     "track": "topic:Agent"
   },
-  "QingYunA/answer-me-with-html": {
-    "first_seen": "2026-10-06T03:32:47.848490+00:00",
-    "stars": 1508,
-    "track": "fresh"
+  "PatchBuilderAmplify/stolen-crypto-tracer": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 405,
+    "track": "topic:Trading"
   },
   "QuantMLResearch/quant-handbook": {
     "first_seen": "2026-10-30T03:12:42.153824+00:00",
     "stars": 140,
+    "track": "topic:Quant"
+  },
+  "QuantumOrb/QuantOrb": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 80,
     "track": "topic:Quant"
   },
   "SoMarkAI/OXR": {
@@ -159,6 +169,16 @@
     "stars": 130,
     "track": "topic:Finance"
   },
+  "Verlintas/NOIR": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 2545,
+    "track": "fresh"
+  },
+  "WyrmSpongeHaul/quant-trading-bot": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 300,
+    "track": "topic:Quant"
+  },
   "Zagitta/gpu-unlock": {
     "first_seen": "2026-10-27T02:38:35.535520+00:00",
     "stars": 9886,
@@ -183,6 +203,11 @@
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
     "stars": 2524,
     "track": "fresh"
+  },
+  "alchaincyf/huashu-motion": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 2421,
+    "track": "topic:Agent"
   },
   "alejandrobujan/tendedero": {
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
@@ -214,6 +239,11 @@
     "stars": 288,
     "track": "topic:Trading"
   },
+  "ccch1mneyyy/dsh-Go": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 11740,
+    "track": "breakout"
+  },
   "ceyyy427/finathink": {
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
     "stars": 133,
@@ -223,6 +253,16 @@
     "first_seen": "2026-10-20T02:21:23.435160+00:00",
     "stars": 1816,
     "track": "fresh"
+  },
+  "cplj/axiocairn-mcp": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 82,
+    "track": "topic:Quant"
+  },
+  "datasifaw/MiniBank_Cpp": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 97,
+    "track": "topic:Finance"
   },
   "deepseek-ai/DeepInfer": {
     "first_seen": "2026-10-23T02:14:53.062239+00:00",
@@ -249,11 +289,6 @@
     "stars": 238,
     "track": "topic:Trading"
   },
-  "facebookincubator/muse-gadget-sdk": {
-    "first_seen": "2026-10-06T03:32:47.848490+00:00",
-    "stars": 1448,
-    "track": "fresh"
-  },
   "feder-cr/git-ai": {
     "first_seen": "2026-10-20T02:21:23.435160+00:00",
     "stars": 2461,
@@ -279,10 +314,20 @@
     "stars": 12119,
     "track": "breakout"
   },
-  "heydamir/unslop": {
-    "first_seen": "2026-11-03T04:17:24.238326+00:00",
-    "stars": 6460,
+  "govijr/terminal-mac": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 1983,
     "track": "fresh"
+  },
+  "gripserpentmall64/atas-trading-bot": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 301,
+    "track": "topic:Trading"
+  },
+  "heydamir/unslop": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 9951,
+    "track": "breakout"
   },
   "ikow/php2shell-poc": {
     "first_seen": "2026-10-23T02:14:53.062239+00:00",
@@ -309,10 +354,10 @@
     "stars": 3172,
     "track": "fresh"
   },
-  "kargulstudio/sales-crm": {
-    "first_seen": "2026-10-06T03:32:47.848490+00:00",
-    "stars": 1475,
-    "track": "fresh"
+  "kingdee/lingee-bench": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 182,
+    "track": "topic:Finance"
   },
   "liseami/CCBaga": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
@@ -344,6 +389,11 @@
     "stars": 282,
     "track": "topic:Trading"
   },
+  "microsoft/TokenEconomizer": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 4853,
+    "track": "topic:Agent"
+  },
   "mogons/noraz-agent": {
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
     "stars": 169,
@@ -353,11 +403,6 @@
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
     "stars": 143,
     "track": "topic:Quant"
-  },
-  "nanaism/yomiyasu": {
-    "first_seen": "2026-10-06T03:32:47.848490+00:00",
-    "stars": 1528,
-    "track": "fresh"
   },
   "nullmoth/nvidia-macos-driver": {
     "first_seen": "2026-10-09T03:20:56.392656+00:00",
@@ -388,6 +433,11 @@
     "first_seen": "2026-10-30T03:12:42.153824+00:00",
     "stars": 7787,
     "track": "breakout"
+  },
+  "qybaihe/bla": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 2451,
+    "track": "topic:Agent"
   },
   "rddmwmddr/android-ad-cleaner": {
     "first_seen": "2026-10-27T02:38:35.535520+00:00",
@@ -425,9 +475,9 @@
     "track": "breakout"
   },
   "storytold/craft-anything": {
-    "first_seen": "2026-11-03T04:17:24.238326+00:00",
-    "stars": 4881,
-    "track": "fresh"
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 15520,
+    "track": "breakout"
   },
   "storytold/effectcraft": {
     "first_seen": "2026-10-30T03:12:42.153824+00:00",
@@ -519,6 +569,11 @@
     "stars": 12843,
     "track": "breakout"
   },
+  "worldonlyu/Google_AI_Pro_2Year_ZeroCost_Auto": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 2496,
+    "track": "fresh"
+  },
   "xevrion/hatchzip": {
     "first_seen": "2026-10-27T02:38:35.535520+00:00",
     "stars": 2061,
@@ -529,10 +584,10 @@
     "stars": 2212,
     "track": "fresh"
   },
-  "yetone/magpie": {
-    "first_seen": "2026-10-06T03:32:47.848490+00:00",
-    "stars": 5191,
-    "track": "breakout"
+  "zortos293/Lichii": {
+    "first_seen": "2026-11-06T03:54:01.973311+00:00",
+    "stars": 2510,
+    "track": "fresh"
   },
   "zzhahn/a_stock_level2_data": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
