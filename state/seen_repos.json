@@ -24,11 +24,6 @@
     "stars": 11437,
     "track": "breakout"
   },
-  "Ebony-Vinyl/dsh-our-free-model": {
-    "first_seen": "2026-10-13T04:10:46.918495+00:00",
-    "stars": 12322,
-    "track": "breakout"
-  },
   "Fei2411/DS-Bot": {
     "first_seen": "2026-10-30T03:12:42.153824+00:00",
     "stars": 4541,
@@ -54,6 +49,11 @@
     "stars": 24351,
     "track": "breakout"
   },
+  "GiroCrab/GiroCrab": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 189,
+    "track": "topic:Finance"
+  },
   "HeyChengC/wallstreet-explainer": {
     "first_seen": "2026-10-30T03:12:42.153824+00:00",
     "stars": 417,
@@ -63,6 +63,11 @@
     "first_seen": "2026-11-10T04:56:42.773201+00:00",
     "stars": 7863,
     "track": "breakout"
+  },
+  "HybridRobotics/supermimic": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 1336,
+    "track": "fresh"
   },
   "Jakeschincariol/day-trader-skill": {
     "first_seen": "2026-10-23T02:14:53.062239+00:00",
@@ -89,6 +94,11 @@
     "stars": 3336,
     "track": "fresh"
   },
+  "Kianuni/Erosion-CN": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 1743,
+    "track": "fresh"
+  },
   "KnifeLemon/Filee": {
     "first_seen": "2026-10-23T02:14:53.062239+00:00",
     "stars": 10231,
@@ -110,9 +120,9 @@
     "track": "topic:Finance"
   },
   "NotRexed/Hookshot": {
-    "first_seen": "2026-11-10T04:56:42.773201+00:00",
-    "stars": 5341,
-    "track": "fresh"
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 8887,
+    "track": "breakout"
   },
   "Oldcircle/geo-sleuth": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
@@ -159,6 +169,16 @@
     "stars": 130,
     "track": "topic:Finance"
   },
+  "TerminusPotter/quant-trading-bot": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 75,
+    "track": "topic:Quant"
+  },
+  "Th0rgal/satmux": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 1058,
+    "track": "fresh"
+  },
   "Verlintas/NOIR": {
     "first_seen": "2026-11-06T03:54:01.973311+00:00",
     "stars": 2545,
@@ -184,6 +204,11 @@
     "stars": 58,
     "track": "topic:Quant"
   },
+  "agentes-chat/agentes-chat": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 1220,
+    "track": "fresh"
+  },
   "ahwootech/BRUTAL": {
     "first_seen": "2026-10-20T02:21:23.435160+00:00",
     "stars": 1997,
@@ -195,9 +220,9 @@
     "track": "topic:Agent"
   },
   "amosblomqvist/learnharness": {
-    "first_seen": "2026-10-30T03:12:42.153824+00:00",
-    "stars": 4049,
-    "track": "topic:Agent"
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 9064,
+    "track": "breakout"
   },
   "andyhuo520/digital-human-koubo": {
     "first_seen": "2026-10-30T03:12:42.153824+00:00",
@@ -208,6 +233,16 @@
     "first_seen": "2026-10-30T03:12:42.153824+00:00",
     "stars": 3281,
     "track": "fresh"
+  },
+  "apex-compute/ANR": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 1035,
+    "track": "fresh"
+  },
+  "benjitaylor/skills": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 3214,
+    "track": "topic:Agent"
   },
   "carreypro/ict-trading-model": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
@@ -249,6 +284,11 @@
     "stars": 1777,
     "track": "fresh"
   },
+  "dustinliang666-blip/lava-mcp": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 100,
+    "track": "topic:Quant"
+  },
   "edenfunf/reelmimic": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
     "stars": 3331,
@@ -259,6 +299,11 @@
     "stars": 238,
     "track": "topic:Trading"
   },
+  "expo/exact": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 3418,
+    "track": "topic:Agent"
+  },
   "feder-cr/git-ai": {
     "first_seen": "2026-10-20T02:21:23.435160+00:00",
     "stars": 2461,
@@ -268,6 +313,11 @@
     "first_seen": "2026-10-23T02:14:53.062239+00:00",
     "stars": 174,
     "track": "topic:Finance"
+  },
+  "gh0sthacker/graph-kb-assistant": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 103,
+    "track": "topic:Quant"
   },
   "google-research/harness2": {
     "first_seen": "2026-10-20T02:21:23.435160+00:00",
@@ -309,6 +359,16 @@
     "stars": 112,
     "track": "topic:Finance"
   },
+  "janestreet/agent_skills": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 7866,
+    "track": "topic:Agent"
+  },
+  "janitoff0/ninjatrader-bot": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 1104,
+    "track": "topic:Trading"
+  },
   "jhaizhou-ops/S2Arm": {
     "first_seen": "2026-11-10T04:56:42.773201+00:00",
     "stars": 2021,
@@ -344,11 +404,6 @@
     "stars": 1821,
     "track": "fresh"
   },
-  "mhtsec/ARTEX": {
-    "first_seen": "2026-10-13T04:10:46.918495+00:00",
-    "stars": 3647,
-    "track": "fresh"
-  },
   "michaelshimeles/terminal": {
     "first_seen": "2026-10-30T03:12:42.153824+00:00",
     "stars": 314,
@@ -364,10 +419,20 @@
     "stars": 4853,
     "track": "topic:Agent"
   },
+  "mubeen278/metatrader-desktop": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 383,
+    "track": "topic:Trading"
+  },
   "onehumanbeing/esp32-iphone-agent": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
     "stars": 2495,
     "track": "fresh"
+  },
+  "open-net-worth-ai/open-net-worth": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 419,
+    "track": "topic:Finance"
   },
   "openfilm/openfilm": {
     "first_seen": "2026-10-23T02:14:53.062239+00:00",
@@ -424,11 +489,6 @@
     "stars": 8168,
     "track": "breakout"
   },
-  "storytold/filmcraft": {
-    "first_seen": "2026-10-13T04:10:46.918495+00:00",
-    "stars": 11655,
-    "track": "breakout"
-  },
   "storytold/gridcraft": {
     "first_seen": "2026-11-03T04:17:24.238326+00:00",
     "stars": 7051,
@@ -437,11 +497,6 @@
   "storytold/lightcraft": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
     "stars": 12992,
-    "track": "breakout"
-  },
-  "storytold/pdfcraft": {
-    "first_seen": "2026-10-13T04:10:46.918495+00:00",
-    "stars": 11583,
     "track": "breakout"
   },
   "storytold/vectorcraft": {
@@ -519,10 +574,15 @@
     "stars": 2212,
     "track": "fresh"
   },
+  "zandy700/supply-chain-shock-map": {
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 322,
+    "track": "topic:Trading"
+  },
   "zortos293/Lichii": {
-    "first_seen": "2026-11-06T03:54:01.973311+00:00",
-    "stars": 2510,
-    "track": "fresh"
+    "first_seen": "2026-11-13T03:49:54.855908+00:00",
+    "stars": 8808,
+    "track": "breakout"
   },
   "zzhahn/a_stock_level2_data": {
     "first_seen": "2026-10-16T01:55:16.759404+00:00",
